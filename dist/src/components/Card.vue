@@ -45,12 +45,8 @@ export default {
 
 <style lang="scss">
   .template-card{
-    display:flex;
-    flex:1;
-    width:45vw;
-    height: 30vh;
-    justify-content: center;
-    align-content:center;
+    width:auto;
+    height:auto;
     .main-card{
       border-radius:0.6rem;
       background: #cfcfcf;
@@ -66,6 +62,7 @@ export default {
         align-content: center;
         margin:0.5rem;
         &-paragraph{
+          font-size:1rem;
           padding:0.5rem 0.5rem;
           background: white;
           border-radius: 0.8rem;

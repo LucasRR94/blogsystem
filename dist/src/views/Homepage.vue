@@ -1,5 +1,5 @@
 <template>
-  <div class='main-class'>
+  <div class='main-homepage'>
     <header>
       <div class="logo">
         <img src="../assets/logo.svg">
@@ -7,7 +7,12 @@
           <h1>MyPBlog</h1>
         </div>
       </div>
-      <div class="link-sign-up">
+      <div v-if="designMobile" class="hamburger-menu">
+        <div class="hamburger-menu-area">
+          <img src="../assets/hamburger_menu.svg" alt="picture-menu">
+        </div>
+      </div>
+      <div v-else  class="link-sign-up">
         <div class="link-sign-up-container">
           <a href="###">Sign Up</a>
         </div>
@@ -53,67 +58,70 @@ import Card from '../components/Card.vue'
 
 export default {
   name:'Homepage',
-  components:{Card}
+  components:{Card},
+  computed: {
+    designMobile(){
+      /*If true , means that will be mobile design */
+      return window.innerWidth  < 1024;
+    }
+  }
 }
 </script>
 
 <style lang="scss">
+
+@import "../style/_configs.scss","../style/_modulos.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;1,100&display=swap');
-$font-stack1: 'Raleway', sans-serif;
-$font-stack2: 'Arial',sans-serif;  
+  
   *,body,html{
     margin:0 0;
     padding:0 0;
     box-sizing:border-box;
   }
-  .main-class{
-    background:#ffffff;
+  .main-homepage{
     header{
       font-family:$font-stack1;
-      background: rgb(235, 235, 241) url("https://source.unsplash.com/mk7D-4UCfmg/1600x900") no-repeat;
-      background-size:cover;
-      background-position:50% 90%;
-      background-origin:border-box;
-      display:grid;
-      align-items: flex-start;
-      height: 45vh;
-      width: 100vw;
-      grid-template-columns: 0.9fr 0.1fr;
+      @include pic-config($url-pic);
+      @include positioning-two-elements-flex-midle(row);
       .logo{
-        margin-left:0.7rem;
-        margin-top:0.7rem;
-        display: flex;
-        flex-direction: row;
+        flex:1;
+        display:flex;
+        flex-direction:row;
+        width:auto;
+        height:auto;
+        @include positioning-element-flex(center,start);
         img{
-          width:5rem;
-          height:5rem;
+          flex:1;
+          @include positioning-element-flex(center,center);
         }
         .title{
-          font-weight: 100;
-          color:#444444;
-          display:flex;
-          flex-direction:row;
-          h1{
-            justify-self: center;
-            align-self: center;
+          flex:1;
+          @include positioning-element-flex(center,center);
+        }
+      }
+      .hamburger-menu{
+        @include positioning-element-flex(center,start);
+        flex:1;
+        display:flex;
+        justify-content:flex-end;
+        &-area{
+          img{
+            width:auto;
+            height:auto;
           }
         }
       }
       .link-sign-up{
-        margin-top:0.7rem;
-        height:3rem;
-        .link-sign-up-container{
-          width: 8rem;
-          height: 3rem;
-          padding:1rem 1rem;
-          background: black;
-          box-shadow: 1px 4px 10px black;
-          display: flex;
-          border-radius:0.6rem;
-          flex-direction:column;
-          align-items: center;
+        @include positioning-element-flex(center,start);
+        flex:1;
+        display:flex;
+        justify-content:flex-end;
+        &-container{
+          background-color:black;
+          border-radius: 0.3rem;
+          @include  one-flex-row-column(row);
           a{
-            font-size:1.2rem;
+            @include positioning-element-flex(center,center);
             text-decoration:none;
             color:white;
             font-weight: bold;
@@ -121,50 +129,149 @@ $font-stack2: 'Arial',sans-serif;
         }
       }
     }
-    main{
-      display:grid;
-      width: 100vw;
-      height:60vh;
-      grid-template-columns: 1fr 1fr;
-      font-family:$font-stack2;
-      .section-sign-in {
-        background:#512Da8;
-        &-form{
-          color:white;
-        }
-      }
-      .main-reviews{
-        display:flex;
-        flex:1;
-        align-content: center;
-        justify-content: center;
-        margin:0.4rem 0.4rem;
-        &-container{
-          background: #C2185B;
-          display:grid;
-          width: 46vw;
-          height:60vh;
-          border-radius: 0.6rem;
-          grid-template-rows: 0.4fr 1fr;
-          justify-content: center;
-          align-self: center;
-          &-title{
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            width:auto;
-            h2{
-                align-self: center;
-                color:#ffffff;
-              }
-          }
-          &-reviews{
-            background: white;
+  }
+  @media(min-width:320px){
+    .main-homepage{
+      header{
+        height:15vh;
+        .logo{
+            margin:0.2rem 0rem;
+            img{
+              max-width:45px; // 320px -> size width screen
+              max-height:45px;
+            }
+            .title{
+              font-size:0.35rem;
+            }
+         }
+        .hamburger-menu{
+          margin:0.1rem 0rem;
+          &-area{
+            img{
+              max-width:50px; // max-width 320px
+              max-height:50px;
+            }
           }
         }
-        
-        
       }
     }
+  }
+  @media(min-width:425px){
+    .main-homepage{
+      header{
+        height:20vh;
+        .logo{
+            margin:0.2rem 0.2rem;
+            img{
+              max-width:45px; // 320px -> size width screen
+              max-height:45px;
+            }
+            .title{
+              font-size:0.5rem;
+            }
+         }
+        .hamburger-menu{
+          margin:0.1rem .2rem;
+          &-area{
+            img{
+              max-width:50px; // max-width 320px
+              max-height:50px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:768px){
+    .main-homepage{
+      header{
+        height:40vh;
+        .logo{
+            margin:0.2rem 0.2rem;
+            img{
+              max-width:80px; // 320px -> size width screen
+              max-height:80px;
+            }
+            .title{
+              font-size:0.7rem;
+            }
+         }
+        .hamburger-menu{
+          margin:0.1rem .2rem;
+          &-area{
+            img{
+              max-width:80px; // max-width 320px
+              max-height:80px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:1024px){
+    .main-homepage{
+      header{
+
+        .logo{
+          img{
+          }
+          .title{
+          }
+        }
+        .hamburger-menu{
+          &-area{
+            img{
+              width:auto;
+              height:auto;
+            }
+          }
+        }
+        .link-sign-up{
+          margin:1rem 0.7rem;
+          &-container{
+            width:7rem;
+            height:3rem;
+            box-shadow: 2px 5px 5px black;
+            a{
+              padding:1rem 1rem;
+              font-size:1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:1440px){
+    .main-homepage{
+        header{
+          height:45vh;
+          .logo{
+            img{
+            }
+            .title{
+            }
+          }
+          .hamburger-menu{
+            &-area{
+              img{
+                width:auto;
+                height:auto;
+              }
+            }
+          }
+          .link-sign-up{
+            margin:1rem 0.7rem;
+            &-container{
+              width:7rem;
+              height:3rem;
+              box-shadow: 2px 5px 5px black;
+              a{
+                padding:1rem 1rem;
+                font-size:1.2rem;
+              }
+            }
+          }
+        }
+      }
   }
 </style>
