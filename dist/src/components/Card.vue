@@ -45,8 +45,6 @@ export default {
 
 <style lang="scss">
   .template-card{
-    width:auto;
-    height:auto;
     .main-card{
       border-radius:0.6rem;
       background: #cfcfcf;
@@ -60,14 +58,9 @@ export default {
         grid-template-columns: 1fr;
         justify-content: center;
         align-content: center;
-        margin:0.5rem;
         &-paragraph{
-          font-size:1rem;
-          padding:0.5rem 0.5rem;
           background: white;
           border-radius: 0.8rem;
-          width:30vw;
-          height:20vh;
           color:black;
         }
       }
@@ -80,26 +73,130 @@ export default {
         margin:0.5rem;
         &-picture{
           flex:0.6;
-          padding:0.5rem 0.5rem;
-          img{
-            height:7rem;
-            width:7rem;
-            border-radius: 5.0rem;
-            
-          } 
+          padding:0.3rem 0.3rem; 
         }
         &-title{
           flex:0.4;
           p{
-            padding:0.3rem 0.3rem;
             background:white;
             color:black;
-            border-radius: 0.6rem;
-            font-size: auto;
-            font-weight: bold;
           }
         }
       }
     }
   }
+  @media(min-width:320px){
+    .template-card{
+      margin:.2rem .2rem;
+      width:auto;
+      height:20%;
+      max-width:285px;
+      .main-card{
+        height:18vh;
+        .main-review-text-box{
+          margin:0.2rem;
+          &-paragraph{
+            font-size:0.6rem;
+            padding:0.2rem 0.2rem;
+            
+          }
+        }
+        .container-picture-box{
+          margin:.2rem .2rem;
+          &-picture{
+            padding:.1rem .1rem;
+            img{
+              width:2.5rem;
+            } 
+          }
+          &-title{
+            flex:0.1;
+            p{
+              padding:0.2rem 0.2rem;
+              border-radius: 0.6rem;
+              font-size: 0.6rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:425px){
+    .template-card{
+      margin:.2rem .2rem;
+      width:auto;
+      height: 100px;;
+      max-width:300px;
+      
+      .main-card{
+        .main-review-text-box{
+          margin:0.2rem;
+          &-paragraph{
+            font-size:0.6rem;
+            padding:0.2rem 0.2rem;
+            width:auto;
+            height:auto;
+          }
+        }
+        .container-picture-box{
+          margin:.2rem .2rem;
+          &-picture{
+            padding:.1rem .1rem;
+            img{
+              width:2.5rem;
+            } 
+          }
+          &-title{
+            flex:0.1;
+            p{
+              padding:0.2rem 0.2rem;
+              border-radius: 0.6rem;
+              font-size: 0.6rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:768px){
+     .template-card{
+      margin:1rem .2rem;
+      width:auto;
+      max-width:400px;
+      height:28vh;
+      .main-card{
+        height:28vh;
+        .main-review-text-box{
+          margin:0.2rem;
+          &-paragraph{
+            font-size:.8rem;
+            padding:0.2rem 0.2rem;
+            width:auto;
+            height:auto;
+          }
+        }
+        .container-picture-box{
+          margin:.2rem .2rem;
+          &-picture{
+            padding:.1rem .1rem;
+            img{
+              width:4rem;
+            } 
+          }
+          &-title{
+            flex:0.1;
+            p{
+              padding:0.2rem 0.2rem;
+              border-radius: 0.6rem;
+              font-size: 0.6rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:1024px){}
 </style>
