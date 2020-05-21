@@ -32,11 +32,13 @@
         </article>
         <section class="section-sign-in">
           <form class="section-sign-in-form">
-            <div class="section-sign-in-form-title">
-              <h2>Join now</h2>
-            </div>
-            <div class="section-sign-in-form-phrase-Intro">
-              <p>Join now, enjoy the experience of share thoughts with the world.</p>
+            <div class="section-sign-in-form-title-phrase-Intro">
+              <div class="section-sign-in-form-title-phrase-Intro-title">
+                <h2>Join now</h2>
+              </div>
+              <div class="section-sign-in-form-title-phrase-Intro-phrase-Intro">
+                <p>Join now, enjoy the experience of share thoughts with the world.</p>
+              </div>
             </div>
             <div class="section-sign-in-form-input-area">
               <input type="text" id="emailAdress" placeholder="Your email adress">
@@ -48,8 +50,8 @@
       </div>  
     </main>
     <footer>
-      <article><h3>Contact us</h3></article>
-      <article><p>Imgs</p></article>
+      <router-link to="/contact"> <div><p>Contact</p></div> </router-link>
+      <article><p>Social Networks Area</p></article>
     </footer>
   </div>
 </template>
@@ -64,9 +66,6 @@ export default {
     designMobile(){
       /*If true , means that will be mobile design */
       return window.innerWidth  < 1024;
-    },
-    itSbigger1023(){
-      return window.innerWidth  > 1023;
     }
   }
 }
@@ -74,7 +73,7 @@ export default {
 
 <style lang="scss">
 
-@import "../style/_configs.scss","../style/_modulos.scss";
+@import "../style/_mobile.scss","../style/_configs.scss","../style/_modulos.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;1,100&display=swap');
   
   *,body,html{
@@ -155,32 +154,61 @@ export default {
           }
         }
         .section-sign-in{
+          max-width: 400px;
           background:$secundary-purple;
+          display:flex;
+          flex:1;
+          border-radius:.6rem;
+          justify-content: center;
+          align-content: center;
+          @include positioning-element-flex(center,center);
           &-form{
-            &-title{
-              h2{
-                color:#eeee;  
+            max-width: 290px;
+            margin:.5rem .5rem;
+            display:grid;
+            grid-template-rows: 0.8fr 1fr;
+            &-title-phrase-Intro{
+              display: flex;
+              flex-direction:column;
+              &-title{
+                flex:1;
+                font-size:0.82rem;
+                font-weight: light;
+                @include positioning-element-flex(center,center);
+                h2{
+                  color:black;
+                }
               }
-            }
-            &-phrase-Intro{
-              p{
-
+              &-phrase-Intro{
+                line-height: 100%;
+                font-size:0.8rem;
+                text-align:center;
+                color:$white-color-font;
+                @include positioning-element-flex(center,center);
+                flex:1;
               }
             }
             &-input-area{
-              
+              display:grid;
+              grid-template-rows: 1fr 1fr .5fr;
+              row-gap: 1.2rem;
+              max-height: 120px; 
               input{
+                border-radius:.3rem;
+                padding:.2rem .5rem;
+                // margin-top:0.5rem;
                 background:$black-color-font;
                 color:$white-color-font;
                 border:none;
-                
               }
-              input:nth-child(1),input:nth-child(2){
-                
-              }   
               input:nth-child(3){
-
+                border-radius:.6rem;
+                justify-self:center; 
+                color:$black-color-font; 
+                background:$button-color-blue;
+                
               }
+              
             }
           }
         }
@@ -188,7 +216,6 @@ export default {
     }
   }
   footer{
-    display:none
   }
   @media(min-width:320px){
     .main-homepage{
@@ -214,92 +241,7 @@ export default {
           }
         }
       }
-      main{
-        font-family:$font-stack2;
-        width:100%;
-        height:66vh;
-        .wrapper-rewiews-section{
-          width:100%;
-          height:66vh;
-          @include positioning-two-elements-flex-midle(column);
-          .main-reviews{
-            @include positioning-element-flex(center,center);
-            margin:0.2rem 0.2rem;
-            width:95vw;
-            height:32vh;
-            &-container{
-              height:32vh;
-              border-radius:.6rem;
-              background:$primary-pink;
-              display:grid;
-              grid-template-rows: .3fr .6fr;
-              &-title{
-                margin:.5rem .5rem;
-                @include positioning-element-flex(center,center);
-                h2{
-                  font-size:1rem;
-                  color:$white-color-font;
-                }
-              }
-              &-slide-reviews{
-                margin-bottom: .5rem;
-                margin-left:.5rem;
-                margin-right:.5rem;
-                @include positioning-element-flex(center,center);
-              }
-            }
-          }
-          .section-sign-in{
-            margin-top:1rem;
-            height:32vh;
-            width:95vw;
-            @include positioning-element-flex(center,center);
-            border-radius:.6rem;
-            &-form{
-              height:32vh;
-              width:95vw;
-              display:grid;
-              grid-template-rows:0.5fr 1.0fr 2.0fr;
-              margin:0.1rem 0.1rem;
-              &-title{
-                @include positioning-element-flex(center,center);
-                h2{
-                  font-size:1.2rem;
-                  color:#eeee;  
-                }
-              }
-              &-phrase-Intro{
-                @include positioning-element-flex(center,center);
-                display:flex;
-                justify-content:center;
-                width:90%;
-                p{
-                  font-size:0.8rem;
-                }
-              }
-              &-input-area{
-                display:flex;
-                @include positioning-two-elements-flex-midle(column);
-                @include positioning-element-flex(center,center);
-                input{
-                  margin:0.2rem 0rem;
-                  border-radius:.4rem;
-                  padding:0.1rem;
-                  max-width:285px;
-                  @include positioning-element-flex(center,center);
-                }
-                input:nth-child(1),input:nth-child(2){
-                  width:80vw;
-                }
-                input:nth-child(3){
-                  width:20vw;
-                  max-width:70px;
-                }
-              }
-            }
-          }
-        }
-      }
+      @include design_cards_rows(1fr,0.6fr);      
     }
   }
   @media(min-width:425px){
@@ -326,92 +268,7 @@ export default {
           }
         }
       }
-      main{
-        font-family:$font-stack2;
-        width:100%;
-        height:70vh;
-        .wrapper-rewiews-section{
-          width:100%;
-          height:70vh;
-          @include positioning-two-elements-flex-midle(column);
-          .main-reviews{
-            @include positioning-element-flex(center,center);
-            margin:0.2rem 0.2rem;
-            width:95vw;
-            max-width: 400px;
-            height:32vh;
-            &-container{
-              height:32vh;
-              border-radius:.6rem;
-              background:$primary-pink;
-              display:grid;
-              grid-template-rows: .1fr .8fr;
-              &-title{
-                margin:.5rem .5rem;
-                @include positioning-element-flex(center,center);
-                h2{
-                  font-size:1rem;
-                  color:$white-color-font;
-                }
-              }
-              &-slide-reviews{
-                margin:.5rem;
-                @include positioning-element-flex(center,center);
-              }
-            }
-          }
-          .section-sign-in{
-            height:40vh;
-            max-width: 400px;
-            width:95vw;
-            @include positioning-element-flex(center,center);
-            border-radius:.6rem;
-            &-form{
-              height:40vh;
-              max-width: 400px;
-              width:95vw;
-              display:grid;
-              grid-template-rows:0.5fr .8fr 2.0fr;
-              margin:0.1rem 0.1rem;
-              &-title{
-                @include positioning-element-flex(center,center);
-                h2{
-                  font-size:1.2rem;
-                  color:#eeee;  
-                }
-              }
-              &-phrase-Intro{
-                @include positioning-element-flex(center,center);
-                display:flex;
-                justify-content:center;
-                width:90%;
-                p{
-                  font-size:1rem;
-                }
-              }
-              &-input-area{
-                display:flex;
-                @include positioning-two-elements-flex-midle(column);
-                @include positioning-element-flex(center,center);
-                input{
-                  font-size:1.0rem;
-                  margin:0.4rem 0rem;
-                  border-radius:.4rem;
-                  padding:0.1rem;
-                  max-width:285px;
-                  @include positioning-element-flex(center,center);
-                }
-                input:nth-child(1),input:nth-child(2){
-                  width:80vw;
-                }
-                input:nth-child(3){
-                  width:20vw;
-                }
-              }
-            }
-          }
-        }
-      }
+      @include design_cards_rows(0.8fr,0.8fr);
     }
   }
   @media(min-width:768px){
@@ -439,17 +296,16 @@ export default {
         }
       }
       main{
-        font-family:$font-stack2;
         width:100vh;
-        height:60vh;
+        height:80vh;
         .wrapper-rewiews-section{
           width:100vh;
-          height:60vh;
+          height:70vh;
           display:grid;
           grid-template-columns: 1fr 1fr;
           .main-reviews{
             margin-top:2rem;
-            width:50vw;
+            width:48vw;
             max-width: 500px;
             height:60vh;
             margin-right:0.5rem;
@@ -458,9 +314,9 @@ export default {
               border-radius:.6rem;
               background:$primary-pink;
               display:grid;
-              grid-template-rows: .1fr .8fr;
+              grid-template-rows: .5fr .5fr;
               &-title{
-                margin:.5rem .5rem;
+                margin:1rem .5rem;
                 @include positioning-element-flex(center,center);
                 h2{
                   font-size:1.2rem;
@@ -477,54 +333,22 @@ export default {
             height:60vh;
             max-width: 500px;
             width:48vw;
-            margin-top:1.8rem;
+            margin-top:2rem;
             border-radius:.6rem;
             &-form{
-              height:60vh;
-              max-width: 500px;
-              width:46vw;
-              display:grid;
-              grid-template-rows:0.4fr .7fr 2fr;
-              margin:0.1rem 0.1rem;
-              &-title{
-                @include positioning-element-flex(center,center);
-                h2{
-                  font-size:1.2rem;
-                  color:#eeee;  
+                &-title-phrase-Intro{
+                  &-phrase-Intro{
+                    font-size:1rem;
+                  }
+                }
+                &-input-area{
+                  
+                  input{
+                    font-size:1rem;
+                  }
+                  
                 }
               }
-              &-phrase-Intro{
-                @include positioning-element-flex(center,center);
-                display:flex;
-                justify-content:center;
-                width:40vw;
-                p{
-                  font-size:1rem;
-                }
-              }
-              &-input-area{
-                margin-top:.5rem;
-                display:flex;
-                @include positioning-two-elements-flex-midle(column);
-                @include positioning-element-flex(center,center);
-                input{
-                  font-size:1.0rem;
-                  margin:0.4rem 0rem;
-                  border-radius:.4rem;
-                  max-width:285px;
-                  @include positioning-element-flex(center,center);
-                }
-                input:nth-child(1),input:nth-child(2){
-                  padding:0.4rem;
-                  width:40vw;
-                  margin-bottom:1rem;
-                }
-                input:nth-child(3){
-                  width:10vw;
-                  padding:0.2rem; 
-                }
-              }
-            }
           }
         }
       }
@@ -533,13 +357,6 @@ export default {
   @media(min-width:1024px){
     .main-homepage{
       header{
-
-        .logo{
-          img{
-          }
-          .title{
-          }
-        }
         .hamburger-menu{
           &-area{
             img{
@@ -562,9 +379,8 @@ export default {
         }
       }
       main{
-          font-family:$font-stack2;
           width:100vw;
-          height:70vh;
+          height:80vh;
           display:flex;
           flex:1;
           flex-direction: row;
@@ -575,22 +391,25 @@ export default {
             height:70vh;
             display:grid;
             grid-template-columns: 1fr 1fr;
+            max-height: 600px;
             .main-reviews{
               margin-top:2rem;
               width:45vw;
               max-width: 500px;
               height:60vh;
+              max-height: 400px;
               margin-right:0.5rem;
               display:flex;
               flex-direction: column;
               &-container{
                 height:60vh;
+                max-height: 400px;
                 border-radius:.6rem;
                 background:$primary-pink;
                 display:grid;
                 grid-template-rows: .1fr .8fr;
                 &-title{
-                  margin:.5rem .5rem;
+                  margin:1rem .5rem;
                   @include positioning-element-flex(center,center);
                   h2{
                     font-size:1.2rem;
@@ -606,53 +425,25 @@ export default {
             .section-sign-in{
               height:60vh;
               max-width: 500px;
+              max-height: 400px;
               width:45vw;
-              margin-top:1.8rem;
+              margin-top:2rem;
               border-radius:.6rem;
               &-form{
-                height:60vh;
-                max-width: 500px;
-                width:40vw;
-                display:grid;
-                grid-template-rows:0.4fr .7fr 2fr;
-                margin:0.1rem 0.1rem;
-                &-title{
-                  @include positioning-element-flex(center,center);
-                  h2{
-                    font-size:1.2rem;
-                    color:#eeee;  
+                &-title-phrase-Intro{
+                  &-title{
+                    h2{
+                      font-size:1.2rem;
+                    }
                   }
-                }
-                &-phrase-Intro{
-                  @include positioning-element-flex(center,center);
-                  display:flex;
-                  justify-content:center;
-                  width:38vw;
-                  max-width: 380px;
-                  p{
-                    font-size:1rem;
+                  &-phrase-Intro{
+                    font-size:1.05rem;
                   }
                 }
                 &-input-area{
-                  margin-top:.5rem;
-                  display:flex;
-                  @include positioning-two-elements-flex-midle(column);
-                  @include positioning-element-flex(center,center);
+                  
                   input{
-                    font-size:1.0rem;
-                    margin:0.4rem 0rem;
-                    border-radius:.4rem;
-                    max-width:285px;
-                    @include positioning-element-flex(center,center);
-                  }
-                  input:nth-child(1),input:nth-child(2){
-                    padding:0.4rem;
-                    width:40vw;
-                    margin-bottom:1rem;
-                  }
-                  input:nth-child(3){
-                    width:10vw;
-                    padding:0.2rem; 
+                    font-size:1rem;
                   }
                 }
               }
@@ -665,12 +456,6 @@ export default {
     .main-homepage{
         header{
           height:45vh;
-          .logo{
-            img{
-            }
-            .title{
-            }
-          }
           .hamburger-menu{
             &-area{
               img{
@@ -693,7 +478,6 @@ export default {
           }
         }
         main{
-          font-family:$font-stack2;
           width:100vw;
           height:70vh;
           display:flex;
@@ -704,6 +488,7 @@ export default {
           .wrapper-rewiews-section{
             width:98vw;
             max-width: 1400px;
+            max-height: 600px;
             height:70vh;
             display:grid;
             grid-template-columns: 1fr 1fr;
@@ -720,7 +505,7 @@ export default {
                 border-radius:.6rem;
                 background:$primary-pink;
                 display:grid;
-                grid-template-rows: .1fr .8fr;
+                grid-template-rows: .2fr .8fr;
                 &-title{
                   margin:.5rem .5rem;
                   @include positioning-element-flex(center,center);
@@ -742,49 +527,19 @@ export default {
               margin-top:1.8rem;
               border-radius:.6rem;
               &-form{
-                height:60vh;
-                max-width: 500px;
-                width:40vw;
-                display:grid;
-                grid-template-rows:0.4fr .7fr 2fr;
-                margin:0.1rem 0.1rem;
-                &-title{
-                  @include positioning-element-flex(center,center);
-                  h2{
-                    font-size:1.2rem;
-                    color:#eeee;  
+                &-title-phrase-Intro{
+                  &-title{
+                    h2{
+                      font-size:1.2rem;
+                    }
                   }
-                }
-                &-phrase-Intro{
-                  @include positioning-element-flex(center,center);
-                  display:flex;
-                  justify-content:center;
-                  width:38vw;
-                  max-width: 380px;
-                  p{
-                    font-size:1rem;
+                  &-phrase-Intro{
+                    font-size:1.05rem;
                   }
                 }
                 &-input-area{
-                  margin-top:.5rem;
-                  display:flex;
-                  @include positioning-two-elements-flex-midle(column);
-                  @include positioning-element-flex(center,center);
                   input{
-                    font-size:1.0rem;
-                    margin:0.4rem 0rem;
-                    border-radius:.4rem;
-                    max-width:285px;
-                    @include positioning-element-flex(center,center);
-                  }
-                  input:nth-child(1),input:nth-child(2){
-                    padding:0.4rem;
-                    width:40vw;
-                    margin-bottom:1rem;
-                  }
-                  input:nth-child(3){
-                    width:10vw;
-                    padding:0.2rem; 
+                    font-size:1rem;
                   }
                 }
               }

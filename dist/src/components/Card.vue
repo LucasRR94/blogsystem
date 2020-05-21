@@ -29,16 +29,6 @@ export default {
       type: String,
       default:"pictureUnknown.svg"
     }
-  },
-  data() {
-    return{
-      pathImg:"./assets/pictureUnknown.svg"
-    }
-  },
-  methods: {
-    getCurrentPicture(){
-      return "assets/pictureUnknown.png";
-    }
   }
 }
 </script>
@@ -54,30 +44,41 @@ export default {
       flex-direction: row;
       .main-review-text-box{
         flex:0.7;
+        height:100%;
         display:grid;
         grid-template-columns: 1fr;
         justify-content: center;
         align-content: center;
         &-paragraph{
+          margin-top:0.4rem;
           background: white;
           border-radius: 0.8rem;
           color:black;
+          overflow-x: auto;
+          p{
+            margin:0.1rem;
+          }
         }
       }
       .container-picture-box{
         flex:0.3;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin:0.5rem;
+        display:grid;
+        grid-template-rows: 1fr 1fr; 
         &-picture{
-          flex:0.6;
-          padding:0.3rem 0.3rem; 
+          justify-self:center;
+          display: flex;
+          flex:1;
+          flex-direction:row;
+          justify-content: center;
         }
         &-title{
-          flex:0.4;
+          display:flex;
+          flex-direction: column;
+          align-content: center;
+          justify-content: center;
           p{
+            text-align: center;
+            flex:0.3;
             background:white;
             color:black;
           }
@@ -97,8 +98,7 @@ export default {
           margin:0.2rem;
           &-paragraph{
             font-size:0.6rem;
-            padding:0.2rem 0.2rem;
-            
+            padding:0.3rem 0.3rem;
           }
         }
         .container-picture-box{
@@ -106,7 +106,7 @@ export default {
           &-picture{
             padding:.1rem .1rem;
             img{
-              width:2.5rem;
+              width:90%;
             } 
           }
           &-title{
@@ -126,7 +126,7 @@ export default {
     .template-card{
       margin:.2rem .2rem;
       width:auto;
-      height: 100px;;
+      height: 100px;
       max-width:300px;
       
       .main-card{
@@ -144,7 +144,7 @@ export default {
           &-picture{
             padding:.1rem .1rem;
             img{
-              width:2.5rem;
+              width:90%;
             } 
           }
           &-title{
@@ -152,7 +152,7 @@ export default {
             p{
               padding:0.2rem 0.2rem;
               border-radius: 0.6rem;
-              font-size: 0.6rem;
+              font-size: 0.7rem;
               font-weight: bold;
             }
           }
@@ -165,9 +165,11 @@ export default {
       margin:1rem .2rem;
       width:auto;
       max-width:400px;
+      max-height: 200px;
       height:28vh;
       .main-card{
         height:28vh;
+        max-height: 200px;
         .main-review-text-box{
           margin:0.2rem;
           &-paragraph{
@@ -178,11 +180,11 @@ export default {
           }
         }
         .container-picture-box{
-          margin:.2rem .2rem;
+          margin:1rem .2rem;
           &-picture{
             padding:.1rem .1rem;
             img{
-              width:4rem;
+              width:90%;
             } 
           }
           &-title{
@@ -190,7 +192,7 @@ export default {
             p{
               padding:0.2rem 0.2rem;
               border-radius: 0.6rem;
-              font-size: 0.6rem;
+              font-size: 0.8rem;
               font-weight: bold;
             }
           }
@@ -198,5 +200,4 @@ export default {
       }
     }
   }
-  @media(min-width:1024px){}
 </style>
