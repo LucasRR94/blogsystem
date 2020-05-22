@@ -1,0 +1,74 @@
+@mixin control_cards_desktop_tablet($max_height,$proportion_grid_1,$proportion_grid_2,$font_size_titles){
+  main{
+    width:100vw;
+    height:80vh;
+    display:flex;
+    flex:1;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    .wrapper-rewiews-section{
+      justify-self:center;
+      width:98vw;
+      height:70vh;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      max-height:$max_height;
+      .main-reviews{
+        margin-top:2rem;
+        width:45vw;
+        max-width: 500px;
+        height:60vh;
+        margin-right:0.5rem;
+        max-height:$max_height;
+        &-container{
+          height:60vh;
+          border-radius:.6rem;
+          display:grid;
+          grid-template-rows: $proportion_grid_1 $proportion_grid_2;
+          max-height:$max_height;
+          &-title{
+            margin:1rem .5rem;
+            @include positioning-element-flex(center,center);
+            h2{
+              font-size:$font_size_titles;
+              color:$white-color-font;
+            }
+          }
+          &-slide-reviews{
+            margin:.5rem;
+            @include positioning-element-flex(center,center);
+          }
+        }
+      }
+      .section-sign-in{
+        height:60vh;
+        max-width: 500px;
+        max-height:$max_height;
+        width:45vw;
+        margin-top:2rem;
+        &-form{
+            max-width: 360px;
+            &-title-phrase-Intro{
+              margin-top:0.8rem;
+              &-title{
+                h2{
+                  font-size:$font_size_titles;
+                }
+              }
+              &-phrase-Intro{
+                font-size:1rem;
+              }
+            }
+            &-input-area{
+              
+              input{
+                font-size:1rem;
+              }
+              
+            }
+          }
+      }
+    }
+  }
+}

@@ -7,9 +7,18 @@
           <h1>MyPBlog</h1>
         </div>
       </div>
-      <div v-if="designMobile" class="hamburger-menu">
+      <div v-if="windowScreen < 1024" class="hamburger-menu">
         <div class="hamburger-menu-area">
-          <img src="../assets/hamburger_menu.svg" alt="picture-menu">
+          <div class="hamburger-menu-area-container-list hidden-icon">
+            <ul class="hamburger-menu-area-container-list-dropdown-menu">
+              <li class="hamburger-menu-area-container-list-dropdown-menu-container">Sign up</li>
+              <li class="hamburger-menu-area-container-list-dropdown-menu-container">item 2</li>
+              <li class="hamburger-menu-area-container-list-dropdown-menu-container">item 3</li>
+              <li class="hamburger-menu-area-container-list-dropdown-menu-container">item 4</li>
+              <li class="hamburger-menu-area-container-list-dropdown-menu-container">item 5</li>
+            </ul>
+          </div>
+          <img src="../assets/hamburger_menu.svg" alt="picture-menu" class="visible-icon">
         </div>
       </div>
       <div v-else  class="link-sign-up">
@@ -50,8 +59,19 @@
       </div>  
     </main>
     <footer>
-      <router-link to="/contact"> <div><p>Contact</p></div> </router-link>
-      <article><p>Social Networks Area</p></article>
+      <div class="wrapper-content-footer">
+        <router-link  to="/contact"><div class="page-contact"><p>Contact</p></div></router-link>
+        <section> 
+          <div class="Title-icons">
+            <h3>Social networks:</h3>
+          </div>
+          <div class="container-models-social-network-icon"> 
+            <img src="../assets/social_network_icon.svg" alt="social_media_link">
+            <img src="../assets/social_network_icon.svg" alt="social_media_link">
+            <img src="../assets/social_network_icon.svg" alt="social_media_link">
+          </div> 
+        </section>
+        </div>
     </footer>
   </div>
 </template>
@@ -62,18 +82,25 @@ import Card from '../components/Card.vue'
 export default {
   name:'Homepage',
   components:{Card},
-  computed: {
-    designMobile(){
-      /*If true , means that will be mobile design */
-      return window.innerWidth  < 1024;
+  methods:{
+    updateSizeScreen(){
+      this.windowScreen=window.innerWidth;
     }
+  },
+  data(){
+    return{
+      windowScreen:window.innerWidth
+    }
+  },
+  mounted(){
+    window.addEventListener('resize',this.updateSizeScreen);
   }
 }
 </script>
 
 <style lang="scss">
 
-@import "../style/_mobile.scss","../style/_configs.scss","../style/_modulos.scss";
+@import "../style/_control_cards_desktop_tablet.scss","../style/_mobile.scss","../style/_configs.scss","../style/_modulos.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;1,100&display=swap');
   
   *,body,html{
@@ -81,8 +108,20 @@ export default {
     padding:0 0;
     box-sizing:border-box;
   }
+  .hidden-icon{
+    display:none;
+  }
+  .visible-icon{
+    display:block;
+  }
   .main-homepage{
+    grid-template-rows: auto auto auto;
+    align-content: space-around;
+    justify-content: center;
+    width:100vw;
+    height:100%;
     header{
+      position:relative;
       font-family:$font-stack1;
       @include pic-config($url-pic);
       @include positioning-two-elements-flex-midle(row);
@@ -108,6 +147,26 @@ export default {
         display:flex;
         justify-content:flex-end;
         &-area{
+          &-container-list{
+            height:auto;
+            width:auto;
+            &-dropdown-menu{
+              background:rgb(65, 65, 65);
+              list-style: none;
+              margin:.2rem;
+              padding:.2rem .2rem;
+              border-radius:.4rem;
+              z-index:2;
+              &-container{
+                z-index:2;
+                color:#000;
+                background:#fff;
+                padding:.6rem 0.6rem;
+                margin:0.5rem;
+                border-radius:.4rem;
+              }
+            }
+          }
           img{
             width:auto;
             height:auto;
@@ -132,7 +191,9 @@ export default {
         }
       }
     }
+    
     main{
+      position:static;
       font-family:$font-stack2;
       width:100%;
       .wrapper-rewiews-section{
@@ -196,7 +257,6 @@ export default {
               input{
                 border-radius:.3rem;
                 padding:.2rem .5rem;
-                // margin-top:0.5rem;
                 background:$black-color-font;
                 color:$white-color-font;
                 border:none;
@@ -214,15 +274,74 @@ export default {
         }
       }
     }
+    
+    footer{
+      grid-row-start:2;
+      grid-row-end:3;
+      width:100vw;
+      height:10vh;
+      background: rgb(153, 153, 153);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top:0.8rem;
+      .wrapper-content-footer{
+        align-self: center;
+        width:90vw;
+        height:8vh;
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+        a{
+          color:#f1f1f1;
+          text-decoration:$black-color-font;
+          font-size:1.2rem;
+        }
+        a:hover{
+          color:rgb(54, 52, 52);
+        }
+        section{
+          padding:.1rem;
+          .Title-icons{
+            font-size:1.0rem;
+            font-weight: lighter;
+          }
+          .container-models-social-network-icon{
+            height:32px;
+            display: flex;
+            flex-direction: row;
+            flex:auto;
+            justify-content: center;
+            align-content: center;
+            img{
+              background: inherit;
+              padding:.1rem .1rem;
+              width:30px;
+              height:30px;
+              margin:0rem .3rem;
+            }
+            img:hover{
+              background:rgb(80, 80, 80);
+              border-radius:0.2rem;
+            }
+
+          }
+          
+        }
+      }
+      
+    }
   }
-  footer{
-  }
+  
   @media(min-width:320px){
     .main-homepage{
       header{
         height:15vh;
         .logo{
-            margin:0.2rem 0rem;
+            margin-left:0.2rem;
+            margin-right:0.2rem;
+            margin-top:0.2rem;
             img{
               max-width:45px; // 320px -> size width screen
               max-height:45px;
@@ -241,7 +360,7 @@ export default {
           }
         }
       }
-      @include design_cards_rows(1fr,0.6fr);      
+      @include design_cards_rows(0.8fr,0.6fr);      
     }
   }
   @media(min-width:425px){
@@ -268,7 +387,7 @@ export default {
           }
         }
       }
-      @include design_cards_rows(0.8fr,0.8fr);
+      @include design_cards_rows(0.2fr,0.8fr);
     }
   }
   @media(min-width:768px){
@@ -276,7 +395,7 @@ export default {
       header{
         height:40vh;
         .logo{
-            margin:0.2rem 0.2rem;
+            margin:0.5rem 0.5rem;
             img{
               max-width:80px; // 320px -> size width screen
               max-height:80px;
@@ -295,68 +414,15 @@ export default {
           }
         }
       }
-      main{
-        width:100vh;
-        height:80vh;
-        .wrapper-rewiews-section{
-          width:100vh;
-          height:70vh;
-          display:grid;
-          grid-template-columns: 1fr 1fr;
-          .main-reviews{
-            margin-top:2rem;
-            width:48vw;
-            max-width: 500px;
-            height:60vh;
-            margin-right:0.5rem;
-            &-container{
-              height:60vh;
-              border-radius:.6rem;
-              background:$primary-pink;
-              display:grid;
-              grid-template-rows: .5fr .5fr;
-              &-title{
-                margin:1rem .5rem;
-                @include positioning-element-flex(center,center);
-                h2{
-                  font-size:1.2rem;
-                  color:$white-color-font;
-                }
-              }
-              &-slide-reviews{
-                margin:.5rem;
-                @include positioning-element-flex(center,center);
-              }
-            }
-          }
-          .section-sign-in{
-            height:60vh;
-            max-width: 500px;
-            width:48vw;
-            margin-top:2rem;
-            border-radius:.6rem;
-            &-form{
-                &-title-phrase-Intro{
-                  &-phrase-Intro{
-                    font-size:1rem;
-                  }
-                }
-                &-input-area{
-                  
-                  input{
-                    font-size:1rem;
-                  }
-                  
-                }
-              }
-          }
-        }
-      }
+      @include control_cards_desktop_tablet(350px,.5fr,.5fr,1rem);
     }
   }
   @media(min-width:1024px){
     .main-homepage{
       header{
+        .logo{
+          margin:1rem;
+        }
         .hamburger-menu{
           &-area{
             img{
@@ -366,11 +432,11 @@ export default {
           }
         }
         .link-sign-up{
-          margin:1rem 0.7rem;
+          margin:1rem;
           &-container{
             width:7rem;
             height:3rem;
-            box-shadow: 2px 5px 5px black;
+            box-shadow: 2px 2px 3px black;
             a{
               padding:1rem 1rem;
               font-size:1.2rem;
@@ -378,84 +444,16 @@ export default {
           }
         }
       }
-      main{
-          width:100vw;
-          height:80vh;
-          display:flex;
-          flex:1;
-          flex-direction: row;
-          align-content: center;
-          justify-content: center;
-          .wrapper-rewiews-section{
-            width:98vw;
-            height:70vh;
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            max-height: 600px;
-            .main-reviews{
-              margin-top:2rem;
-              width:45vw;
-              max-width: 500px;
-              height:60vh;
-              max-height: 400px;
-              margin-right:0.5rem;
-              display:flex;
-              flex-direction: column;
-              &-container{
-                height:60vh;
-                max-height: 400px;
-                border-radius:.6rem;
-                background:$primary-pink;
-                display:grid;
-                grid-template-rows: .1fr .8fr;
-                &-title{
-                  margin:1rem .5rem;
-                  @include positioning-element-flex(center,center);
-                  h2{
-                    font-size:1.2rem;
-                    color:$white-color-font;
-                  }
-                }
-                &-slide-reviews{
-                  margin:.5rem;
-                  @include positioning-element-flex(center,center);
-                }
-              }
-            }
-            .section-sign-in{
-              height:60vh;
-              max-width: 500px;
-              max-height: 400px;
-              width:45vw;
-              margin-top:2rem;
-              border-radius:.6rem;
-              &-form{
-                &-title-phrase-Intro{
-                  &-title{
-                    h2{
-                      font-size:1.2rem;
-                    }
-                  }
-                  &-phrase-Intro{
-                    font-size:1.05rem;
-                  }
-                }
-                &-input-area{
-                  
-                  input{
-                    font-size:1rem;
-                  }
-                }
-              }
-            }
-          }
-        }
+      @include control_cards_desktop_tablet(500px,.2fr,.8fr,1.6rem);
     }
   }
   @media(min-width:1440px){
     .main-homepage{
         header{
           height:45vh;
+          .logo{
+            margin:2rem;
+          }
           .hamburger-menu{
             &-area{
               img{
@@ -465,7 +463,7 @@ export default {
             }
           }
           .link-sign-up{
-            margin:1rem 0.7rem;
+            margin:2rem;
             &-container{
               width:7rem;
               height:3rem;
@@ -477,75 +475,7 @@ export default {
             }
           }
         }
-        main{
-          width:100vw;
-          height:70vh;
-          display:flex;
-          flex:1;
-          flex-direction: row;
-          align-content: center;
-          justify-content: center;
-          .wrapper-rewiews-section{
-            width:98vw;
-            max-width: 1400px;
-            max-height: 600px;
-            height:70vh;
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            .main-reviews{
-              margin-top:2rem;
-              width:45vw;
-              max-width: 500px;
-              height:60vh;
-              margin-right:0.5rem;
-              display:flex;
-              flex-direction: column;
-              &-container{
-                height:60vh;
-                border-radius:.6rem;
-                background:$primary-pink;
-                display:grid;
-                grid-template-rows: .2fr .8fr;
-                &-title{
-                  margin:.5rem .5rem;
-                  @include positioning-element-flex(center,center);
-                  h2{
-                    font-size:1.2rem;
-                    color:$white-color-font;
-                  }
-                }
-                &-slide-reviews{
-                  margin:.5rem;
-                  @include positioning-element-flex(center,center);
-                }
-              }
-            }
-            .section-sign-in{
-              height:60vh;
-              max-width: 500px;
-              width:45vw;
-              margin-top:1.8rem;
-              border-radius:.6rem;
-              &-form{
-                &-title-phrase-Intro{
-                  &-title{
-                    h2{
-                      font-size:1.2rem;
-                    }
-                  }
-                  &-phrase-Intro{
-                    font-size:1.05rem;
-                  }
-                }
-                &-input-area{
-                  input{
-                    font-size:1rem;
-                  }
-                }
-              }
-            }
-          }
-        }
+        @include control_cards_desktop_tablet(500px,.2fr,.8fr,1.6rem);      
       }
   }
 </style>

@@ -94,6 +94,7 @@ export default {
       max-width:285px;
       .main-card{
         height:18vh;
+        max-height: 110px;
         .main-review-text-box{
           margin:0.2rem;
           &-paragraph{
@@ -128,8 +129,8 @@ export default {
       width:auto;
       height: 100px;
       max-width:300px;
-      
       .main-card{
+        max-height: 110px;
         .main-review-text-box{
           margin:0.2rem;
           &-paragraph{
@@ -169,7 +170,7 @@ export default {
       height:28vh;
       .main-card{
         height:28vh;
-        max-height: 200px;
+        max-height: 160px;
         .main-review-text-box{
           margin:0.2rem;
           &-paragraph{
@@ -192,7 +193,7 @@ export default {
             p{
               padding:0.2rem 0.2rem;
               border-radius: 0.6rem;
-              font-size: 0.8rem;
+              font-size: 0.7rem;
               font-weight: bold;
             }
           }

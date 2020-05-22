@@ -5,6 +5,7 @@ import Aboutus from '../views/Aboutus.vue'
 import MainUser from '../views/MainUser.vue'
 import User from '../views/User.vue'
 import UserPost from '../views/UserPost.vue'
+import Contact from '../views/Contact.vue'
 
 Vue.use(VueRouter)
 
@@ -14,23 +15,23 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Homepage
   },
-  {
-    path: '/user',
-    name:'User',
-    component: MainUser,
-    children:[
-      {path:':idUser',
-       component:User,
-       children:[
-        {
-          path:'/:idpost',
-          name:'UserPost',
-          component:UserPost
-        }
-       ]
-      }, 
-    ]
-  },
+  // {
+  //   path: '/user',
+  //   name:'User',
+  //   component: MainUser,
+  //   children:[
+  //     {path:':idUser',
+  //      component:User,
+  //      children:[
+  //       {
+  //         path:'/:idpost',
+  //         name:'UserPost',
+  //         component:UserPost
+  //       }
+  //      ]
+  //     }, 
+  //   ]
+  // },
   {
     path: '/about',
     name: 'Aboutus',
@@ -38,6 +39,11 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: Aboutus
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component:Contact
   }
 ]
 
