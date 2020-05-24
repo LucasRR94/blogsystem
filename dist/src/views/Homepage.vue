@@ -8,8 +8,8 @@
         </div>
       </div>
       <div v-if="windowScreen < 1024" class="hamburger-menu">
-        <div class="hamburger-menu-area">
-          <div class="hamburger-menu-area-container-list hidden-icon">
+        <div class="hamburger-menu-area"  id="dropDownMenu">
+          <div class="hamburger-menu-area-container-list" v-bind:class=" { 'hidden-element' : menuVisible }">
             <ul class="hamburger-menu-area-container-list-dropdown-menu">
               <li class="hamburger-menu-area-container-list-dropdown-menu-container">Sign up</li>
               <li class="hamburger-menu-area-container-list-dropdown-menu-container">item 2</li>
@@ -18,7 +18,7 @@
               <li class="hamburger-menu-area-container-list-dropdown-menu-container">item 5</li>
             </ul>
           </div>
-          <img src="../assets/hamburger_menu.svg" alt="picture-menu" class="visible-icon">
+          <img src="../assets/hamburger_menu.svg" alt="picture-menu" v-on:click="showMenu" v-bind:class=" { 'hidden-element' : !menuVisible }">
         </div>
       </div>
       <div v-else  class="link-sign-up">
@@ -82,18 +82,43 @@ import Card from '../components/Card.vue'
 export default {
   name:'Homepage',
   components:{Card},
-  methods:{
-    updateSizeScreen(){
-      this.windowScreen=window.innerWidth;
-    }
-  },
   data(){
     return{
+      menuVisible: true,
+      iconVisible: false,
       windowScreen:window.innerWidth
     }
   },
-  mounted(){
+  methods:{
+    showMenu(e){
+      e.preventDefault();
+      this.menuVisible = !(this.menuVisible);
+    },
+    updateSizeScreen(){
+      this.windowScreen=window.innerWidth;
+    },
+    ItsMobile(){
+      return this.windowScreen < 1024;
+    },
+    CheckIfClickInsideOrInChildMenu(elementRef,targetClicked){
+      return ((elementRef!==targetClicked)  && !elementRef.contains(targetClicked));
+    },    
+    closeMenu(e){
+      e.preventDefault();
+      const element= document.getElementById("dropDownMenu");
+      const target = e.target;
+      if(this.ItsMobile() && this.menuVisible === false && this.CheckIfClickInsideOrInChildMenu(element,target)){
+        this.menuVisible=!(this.menuVisible);
+      } 
+    }
+  },
+  created(){
     window.addEventListener('resize',this.updateSizeScreen);
+    window.addEventListener('click',this.closeMenu);
+  },
+  destroyed(){
+    window.removeEventListener('resize',this.updateSizeScreen);
+    window.removeEventListener('click',this.closeMenu);
   }
 }
 </script>
@@ -108,10 +133,10 @@ export default {
     padding:0 0;
     box-sizing:border-box;
   }
-  .hidden-icon{
+  .hidden-element{
     display:none;
   }
-  .visible-icon{
+  .visible-element{
     display:block;
   }
   .main-homepage{
@@ -279,7 +304,7 @@ export default {
       grid-row-start:2;
       grid-row-end:3;
       width:100vw;
-      height:10vh;
+      height:12vh;
       background: rgb(153, 153, 153);
       display: flex;
       flex-direction: row;
