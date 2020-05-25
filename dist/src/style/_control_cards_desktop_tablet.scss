@@ -10,6 +10,7 @@
     .wrapper-rewiews-section{
       justify-self:center;
       width:98vw;
+      max-width: 1500px;
       height:70vh;
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -46,7 +47,8 @@
         max-width: 500px;
         max-height:$max_height;
         width:45vw;
-        margin-top:2rem;
+        margin-left:.5rem;
+        margin-top:1.8rem;
         &-form{
             max-width: 360px;
             &-title-phrase-Intro{

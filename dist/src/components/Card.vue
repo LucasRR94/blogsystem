@@ -3,10 +3,7 @@
     <div class="main-card">
       <div class="main-review-text-box">
         <div class="main-review-text-box-paragraph">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Provident fugit doloremque omnis in ex harum, tenetur laborum a,
-          quod nihil quasi. Similique ea quae autem iusto commodi repellat 
-          rem incidunt.</p>
+          <p>{{review}}</p>
         </div>
       </div>
       <div class="container-picture-box">
@@ -14,7 +11,7 @@
           <img v-bind:src="require(`../assets/${picturePath}`)" alt="picture-user">
         </div>
         <div class="container-picture-box-title">
-          <p>Unknown user</p>
+          <p>{{userName}}</p>
         </div>
       </div>
     </div>
@@ -25,6 +22,14 @@
 
 export default {
   props: {
+    userName:{
+      type:String,
+      default:"Unknown user"
+    },
+    review:{
+      type:String,
+      default:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident fugit doloremque omnis in ex harum, tenetur laborum a,quod nihil quasi. Similique ea quae autem iusto commodi repellat rem incidunt."
+    },
     picturePath:{
       type: String,
       default:"pictureUnknown.svg"
@@ -43,25 +48,27 @@ export default {
       display:flex;
       flex-direction: row;
       .main-review-text-box{
-        flex:0.7;
+        flex:0.65;
         height:100%;
         display:grid;
         grid-template-columns: 1fr;
         justify-content: center;
         align-content: center;
         &-paragraph{
-          margin-top:0.4rem;
+          margin-top:0.1rem;
           background: white;
           border-radius: 0.8rem;
           color:black;
-          overflow-x: auto;
           p{
+            overflow-y: auto;
+            overflow: -moz-scrollbars-vertical;
+            overflow:-webkit-scrollbars-vertical;
             margin:0.1rem;
           }
         }
       }
       .container-picture-box{
-        flex:0.3;
+        flex:0.35;
         display:grid;
         grid-template-rows: 1fr 1fr; 
         &-picture{
@@ -91,15 +98,18 @@ export default {
       margin:.2rem .2rem;
       width:auto;
       height:20%;
-      max-width:285px;
+      max-width:285px;//20px each side  
       .main-card{
         height:18vh;
         max-height: 110px;
         .main-review-text-box{
-          margin:0.2rem;
+          margin:0rem 0.2rem;
           &-paragraph{
             font-size:0.6rem;
             padding:0.3rem 0.3rem;
+            p{
+              max-height: 60px;
+            }
           }
         }
         .container-picture-box{
@@ -107,7 +117,7 @@ export default {
           &-picture{
             padding:.1rem .1rem;
             img{
-              width:90%;
+              width:80%;
             } 
           }
           &-title{
@@ -132,12 +142,15 @@ export default {
       .main-card{
         max-height: 110px;
         .main-review-text-box{
-          margin:0.2rem;
+          margin:0rem 0.2rem;
           &-paragraph{
             font-size:0.6rem;
             padding:0.2rem 0.2rem;
             width:auto;
             height:auto;
+            p{
+              max-height: 80px;
+            }
           }
         }
         .container-picture-box{
@@ -145,7 +158,7 @@ export default {
           &-picture{
             padding:.1rem .1rem;
             img{
-              width:90%;
+              width:80%;
             } 
           }
           &-title{
@@ -172,12 +185,15 @@ export default {
         height:28vh;
         max-height: 160px;
         .main-review-text-box{
-          margin:0.2rem;
+          margin:0rem 0.2rem;
           &-paragraph{
             font-size:.8rem;
             padding:0.2rem 0.2rem;
             width:auto;
             height:auto;
+            p{
+              max-height: 100px;
+            }
           }
         }
         .container-picture-box{
@@ -185,7 +201,50 @@ export default {
           &-picture{
             padding:.1rem .1rem;
             img{
-              width:90%;
+              width: 80%;
+            } 
+          }
+          &-title{
+            flex:0.1;
+            p{
+              padding:0.2rem 0.2rem;
+              border-radius: 0.6rem;
+              font-size: 0.7rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media(min-width:768px){
+     .template-card{
+      margin:1rem .2rem;
+      width:auto;
+      max-width:400px;
+      max-height: 200px;
+      height:28vh;
+      .main-card{
+        height:28vh;
+        max-height: 160px;
+        .main-review-text-box{
+          margin:0rem 0.2rem;
+          &-paragraph{
+            font-size:.8rem;
+            padding:0.2rem 0.2rem;
+            width:auto;
+            height:auto;
+            p{
+              max-height: 100px;
+            }
+          }
+        }
+        .container-picture-box{
+          margin:1rem .2rem;
+          &-picture{
+            padding:.1rem .1rem;
+            img{
+              width: 75%;
             } 
           }
           &-title{
