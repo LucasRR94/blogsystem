@@ -15,23 +15,23 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Homepage
   },
-  // {
-  //   path: '/user',
-  //   name:'User',
-  //   component: MainUser,
-  //   children:[
-  //     {path:':idUser',
-  //      component:User,
-  //      children:[
-  //       {
-  //         path:'/:idpost',
-  //         name:'UserPost',
-  //         component:UserPost
-  //       }
-  //      ]
-  //     }, 
-  //   ]
-  // },
+  {
+    path: '/user',
+    name:'MainUser',
+    component: MainUser,
+    children:[
+      {path:':idUser',
+       component:User,
+       children:[
+        {
+          path:'/:idpost',
+          name:'UserPost',
+          component:UserPost
+        }
+       ]
+      }, 
+    ]
+  },
   {
     path: '/about',
     name: 'Aboutus',
