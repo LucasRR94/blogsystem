@@ -1,0 +1,47 @@
+/*Design of mobile*/
+
+@mixin design_cards_rows($title_proportion,$slide_proportion){
+  main{
+    width:100%;
+    height:90vh;
+    .wrapper-rewiews-section{
+      width:100%;
+      height:100vh;
+      @include positioning-two-elements-flex-midle(column);
+      .main-reviews{
+        max-height: 350px;
+        @include positioning-element-flex(center,center);
+        margin:0.2rem 0.2rem;
+        width:95vw;
+        max-width:400px;
+        height:32vh;
+        &-container{
+          height:32vh;
+          max-height: 350px;
+          border-radius:.6rem;
+          display:grid;
+          grid-template-rows: $title_proportion $slide_proportion;
+          &-title{
+            margin:.5rem .5rem;
+            @include positioning-element-flex(center,center);
+            h2{
+              font-size:1rem;
+            }
+          }
+          &-slide-reviews{
+            margin:.5rem;
+            @include positioning-element-flex(center,center);
+          }
+        }
+      }
+      .section-sign-in{
+        height:32vh;
+        width:95vw;
+        max-height:350px;
+        &-form{
+          max-height: 350px;
+        }
+      }
+    }
+  }
+}
