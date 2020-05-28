@@ -7,7 +7,10 @@
     </header>
     <main> 
       <div class="area-search">
-        <SearchUserArea/>
+        <SearchUserArea v-on:searchUser="updateQuery"/>
+      </div>
+      <div class="results-search">
+        <LoadAndSearchUsers v-bind:querySearch="searchQuery"/>
       </div>
     </main>
     <footer>
@@ -20,11 +23,22 @@
 import LogoComponent from '../components/LogoComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue'
 import SearchUserArea from '../components/SearchUserArea.vue'
-
+import LoadAndSearchUsers from '../components/LoadAndSearchUsers.vue'
 
 export default {
   name:'MainUser',
-  components: {SearchUserArea,LogoComponent,FooterComponent}
+  data(){
+    return{
+      searchQuery:''
+    }
+  },
+  components: {LoadAndSearchUsers,SearchUserArea,LogoComponent,FooterComponent},
+  methods:{
+    updateQuery(newQuery){
+      console.log(newQuery);
+      this.searchQuery = newQuery;
+    }
+  }
 }
 </script>
 
@@ -37,29 +51,37 @@ export default {
   }
   .main-user{
     display:grid;
-    grid-template-rows: 1f 3fr 1fr;
+    //grid-template-rows:2fr 2.5fr 1fr;
+    grid-template-rows:auto;
     justify-content: center;
-    align-content: center;
+    align-content: space-between;
     width:100vw;
     height:100vh;
     header {
       width:100vw;
-      height:20vh;
+      height:auto;
       .area-logo{
         margin:0.5rem;
       }
     }
     main{
       width:100vw;
-      height:60vh;
-      @include center-div;  
-      
+      height:auto;
+      @include positioning-two-elements-flex-midle(column);
+      .area-search {
+        width:100vw;
+        height:auto;
+      } 
+      .results-search{
+        width:100vw;
+        height:auto;
+      }
     }
     footer{
       margin-top:.5rem;
       align-self:end;
       width:100vw;
-      height:15vh;
+      height:auto;
     }
   }
 </style>

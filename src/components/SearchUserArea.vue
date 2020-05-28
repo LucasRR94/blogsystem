@@ -6,7 +6,7 @@
       </div>
       <div class="main-area-input-search-bar">
         <input type="search" id="searchArea">
-        <a></a>
+        <a v-on:click="$emit('searchUser',collectContentInput())"></a>
       </div>
     </div>
   </div>
@@ -14,26 +14,39 @@
 
 <script>
 export default {
-  name:'SearchUserArea'
+  name:'SearchUserArea',
+  methods:{
+    collectContentInput(){
+      return document.getElementById('searchArea').value;
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-
   @import '../style/modulos.scss';
+  html,*,body{
+    margin: 0 0;
+    padding: 0 0;
+    box-sizing: border-box;
+  }
   .main-area{
-        width:90vw;
-        height:60vh;
-        margin: 1rem;
+        width:100vw;
+        height:20vh;
+        margin: 1rem 0;
+        padding-left:.5rem;
+        padding-right:.5rem;
         @include center-div;
         &-input-search{
+          justify-self: center;
           height:20vh;
-          width:90vw;
+          width:100vw;
           border-radius: .4rem;
           background:rgb(150, 150, 150);  
           @include positioning-two-elements-flex-midle(column);
           max-width: 400px; 
           min-height: 100px;
+          border:none;
           &-title{
             display:flex;
             flex:.5;
@@ -57,6 +70,14 @@ export default {
               font-size:1rem;
               padding:0 .4rem;
             }
+            input:nth-child(1):focus{
+              background: black;
+              border-bottom:red 2px solid;
+              border-top:none;
+              border-left:none;
+              border-right:none;
+              outline:none; 
+            }
             a{
               border-radius:0rem 0.4rem 0.4rem 0rem;
               background:url("../assets/search-icon.svg");
@@ -65,6 +86,10 @@ export default {
               background-size:cover;
               width:40px;
               height:40px;
+              border: black 2px solid;
+            }
+            a:hover{
+              border:rgb(0, 105, 97) 2px solid;   
             }
           }
         }
