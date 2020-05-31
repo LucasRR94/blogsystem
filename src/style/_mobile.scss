@@ -9,7 +9,7 @@
       height:100vh;
       @include positioning-two-elements-flex-midle(column);
       .main-reviews{
-        max-height: 350px;
+        max-height: 320px;
         @include positioning-element-flex(center,center);
         margin:0.2rem 0.2rem;
         width:95vw;
@@ -17,7 +17,7 @@
         height:32vh;
         &-container{
           height:32vh;
-          max-height: 350px;
+          max-height: 320px;
           border-radius:.6rem;
           display:grid;
           grid-template-rows: $title_proportion $slide_proportion;
@@ -35,11 +35,12 @@
         }
       }
       .section-sign-in{
+        margin-top:.5rem 0rem;
         height:32vh;
         width:95vw;
-        max-height:350px;
+        max-height:320px;
         &-form{
-          max-height: 350px;
+          max-height: 320px;
         }
       }
     }
