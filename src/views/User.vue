@@ -5,7 +5,7 @@
     </header>
     <main>
       <div class="area">
-        <SearchUserArea/>
+        <p>User man {{this.$route.param}}</p>
       </div>
     </main>
     <aside></aside>

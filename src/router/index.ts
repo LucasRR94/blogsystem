@@ -4,7 +4,7 @@ import Homepage from '../views/Homepage.vue'
 import Aboutus from '../views/Aboutus.vue'
 import MainUser from '../views/MainUser.vue'
 import User from '../views/User.vue'
-import UserPost from '../views/UserPost.vue'
+import ListUsers from '../views/ListUsers.vue'
 import Contact from '../views/Contact.vue'
 
 Vue.use(VueRouter)
@@ -16,21 +16,18 @@ Vue.use(VueRouter)
     component: Homepage
   },
   {
-    path: '/user',
-    name:'MainUser',
-    component: MainUser,
-    children:[
-      {path:':idUser',
-       component:User,
-       children:[
-        {
-          path:'/:idpost',
-          name:'UserPost',
-          component:UserPost
-        }
-       ]
-      }, 
-    ]
+    path: '/researchuser',
+    name: 'Researchuser',
+    component: MainUser
+  },{
+    path: '/listusers',
+    name: 'listusers',
+    component: ListUsers
+  },
+  {
+    path: '/user/:idUser',
+    name:'User',
+    component:User
   },
   {
     path: '/about',
@@ -44,7 +41,13 @@ Vue.use(VueRouter)
     path: '/contact',
     name: 'Contact',
     component:Contact
+  },
+  {
+    path: '*',
+    name: 'Default',
+    component:Homepage
   }
+
 ]
 
 const router = new VueRouter({

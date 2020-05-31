@@ -35,7 +35,6 @@ export default {
   components: {LoadAndSearchUsers,SearchUserArea,LogoComponent,FooterComponent},
   methods:{
     updateQuery(newQuery){
-      console.log(newQuery);
       this.searchQuery = newQuery;
     }
   }

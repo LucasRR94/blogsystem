@@ -205,16 +205,17 @@ export default {
     background-color:rgb(235, 226, 226) !important;            
   }
   .main-homepage{
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 1fr 3fr 1fr;
     align-content: space-around;
     justify-content: center;
     width:100vw;
-    height:100%;
+    height:100vh;
     header{
       position:relative;
       font-family:$font-stack1;
       @include pic-config($url-pic);
       @include positioning-two-elements-flex-midle(row);
+      height:30%;
       .logo{
         flex:1;
         display:flex;
@@ -288,6 +289,7 @@ export default {
       position:static;
       font-family:$font-stack2;
       width:100%;
+      height:60%;
       .wrapper-rewiews-section{
         .main-reviews{
           margin:0.1rem 0.1rem;
@@ -425,7 +427,7 @@ export default {
       grid-row-start:2;
       grid-row-end:3;
       width:100vw;
-      height:12vh;
+      height: 16%;
       background: rgb(153, 153, 153);
       display: flex;
       flex-direction: row;
@@ -533,7 +535,7 @@ export default {
           }
         }
       }
-      @include design_cards_rows(0.2fr,0.8fr);
+      @include design_cards_rows(1fr,1fr);
     }
   }
   @media(min-width:768px){
