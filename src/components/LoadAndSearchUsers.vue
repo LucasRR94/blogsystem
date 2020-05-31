@@ -2,7 +2,7 @@
   <div class="main-load-and-search-users">
     <ul class="main-load-and-search-users-area-profile" v-if="searchRunning">
       <li class="main-load-and-search-users-area-profile-profile-card" v-for="user in contentConsultUsersLinks" :key="user.id"> 
-        <router-link :to="{ name: 'idUser', params: { userId: user.id }}"> 
+        <router-link :to="{ name: 'User', params: { idUser: user.id }}"> 
           <div class="container-profile">
             <div class="container-profile-pic">
               <img v-bind:src="require(`../assets/${picturePath}`)" alt="picture-user">
@@ -29,7 +29,7 @@ export default {
   },
   data(){
     return{
-      contentConsultUsersLinks:{},
+      contentConsultUsersLinks:[],
       picturePath:"pictureUnknown.svg",
       searchRunning:false
     }
@@ -37,28 +37,36 @@ export default {
   watch:{
     querySearch:function(newQuery,oldQuery){
       // make the consultation for the name
-      this.searchRunning=true;
+      //this.updateConsultContent(newQuery);
+      this.getUsers();
+      this.searchRunning = true;
     }
   },
   methods:{
-    filteringQuery(arrUsers){
-      const arrUsersLinks = arrUsers.map(function(el){
-        return {id:el.id,name:el.name};
-      });
-      // return arrUsersLinks;
-      return arrUsersLinks;
-    },
-    updateConsultContent(){
-      axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(answer => {
-        const copyAnswer = answer;
-        this.contentConsultUsersLinks = this.filteringQuery(copyAnswer.data)
+    getUsers(){
+      axios({method: 'get',
+        url: 'https://jsonplaceholder.typicode.com/users',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
       })
-      .catch(err => console.log(err));
+      .then(response =>
+      this.contentConsultUsersLinks= response.data)
+      .catch(err => console.log(`Error detected:${err}`));
+    },
+    updateConsultContent(query){
+      axios({method: 'post',
+        url: 'https://jsonplaceholder.typicode.com/users',
+        data: JSON.stringify({
+          "name": query,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+      .then(response => this.contentConsultUsersLinks.push(response.data))
+      .catch(err => console.log(`Error detected:${err}`));
     }
-  },
-  created(){
-    this.updateConsultContent();
   }
 }
 </script>
