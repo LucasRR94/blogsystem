@@ -37,35 +37,28 @@ export default {
   watch:{
     querySearch:function(newQuery,oldQuery){
       // make the consultation for the name
-      //this.updateConsultContent(newQuery);
-      this.getUsers();
+      this.updateConsultContent(newQuery);
+      //this.getUsers();
       this.searchRunning = true;
     }
   },
   methods:{
-    getUsers(){
-      axios({method: 'get',
-        url: 'https://jsonplaceholder.typicode.com/users',
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
-      .then(response =>
-      this.contentConsultUsersLinks= response.data)
-      .catch(err => console.log(`Error detected:${err}`));
-    },
     updateConsultContent(query){
-      axios({method: 'post',
+      axios({
         url: 'https://jsonplaceholder.typicode.com/users',
+        method: 'POST',
         data: JSON.stringify({
-          "name": query,
+          name:query
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json; charset=UTF-8",
         }
       })
       .then(response => this.contentConsultUsersLinks.push(response.data))
-      .catch(err => console.log(`Error detected:${err}`));
+      .catch(err => {
+        console.log(`Error detected:${err}`)
+        alert("Error detected please reload the page or try again later")
+      });
     }
   }
 }

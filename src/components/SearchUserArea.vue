@@ -6,7 +6,7 @@
       </div>
       <div class="main-area-input-search-bar">
         <input type="search" id="searchArea">
-        <a v-on:click="$emit('searchUser',collectContentInput())"></a>
+        <a v-on:click.prevent="$emit('searchUser',collectContentInput())"></a>
       </div>
     </div>
   </div>
