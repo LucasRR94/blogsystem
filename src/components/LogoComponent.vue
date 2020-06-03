@@ -1,5 +1,6 @@
 <template>
-  <div class="main-logo">
+  <router-link :to="{name:'Home'}" class="redirect">
+    <div class="main-logo">
     <div class="logo">
         <img v-bind:src="require(`../assets/${path}`)">
         <div class="title">
@@ -7,6 +8,7 @@
         </div>
     </div>
   </div>
+  </router-link>
 </template>
 
 <script>
@@ -30,20 +32,24 @@ export default {
     padding:0 0;
     box-sizing: border-box;
   }
-  .main-logo{
-    width:auto;
-    height:auto;
-    font-family: $font-stack1;
-    .logo{
-      display:flex;
-      flex:1 1;
-      flex-direction:row;
-      @include positioning-element-flex(center,start);
-      img{
-        @include positioning-element-flex(center,center);
-      }
-      .title{
-        @include positioning-element-flex(center,center);
+  .redirect{
+    text-decoration:none;
+    color:black;
+    .main-logo{
+      width:auto;
+      height:auto;
+      font-family: $font-stack1;
+      .logo{
+        display:flex;
+        flex:1 1;
+        flex-direction:row;
+        @include positioning-element-flex(center,start);
+        img{
+          @include positioning-element-flex(center,center);
+        }
+        .title{
+          @include positioning-element-flex(center,center);
+        }
       }
     }
   }

@@ -5,7 +5,9 @@ import Aboutus from '../views/Aboutus.vue'
 import MainUser from '../views/MainUser.vue'
 import User from '../views/User.vue'
 import ListUsers from '../views/ListUsers.vue'
+import NotFound from '../views/NotFound.vue'
 import Contact from '../views/Contact.vue'
+
 
 Vue.use(VueRouter)
 
@@ -44,8 +46,8 @@ Vue.use(VueRouter)
   },
   {
     path: '*',
-    name: 'Default',
-    component:Homepage
+    name: 'Notfound',
+    component: NotFound
   }
 
 ]

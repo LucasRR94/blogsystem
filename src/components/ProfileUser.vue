@@ -4,9 +4,18 @@
       <img v-bind:src="require(`../assets/${profile.picPath}`)" alt="pic-profile">
     </div>
     <div v-if="!state.hidden" class="main-profile-user-info-profile"> 
-      <span>Name: {{profile.name}}</span>
-      <span>Unique Id: {{profile.id}}</span>
-      <span>Published posts: {{profile.numberPost}}</span>
+      <div class="main-profile-user-info-profile-wrapper">
+        <span>Name: {{profile.name}}</span>
+      </div>
+      <div class="main-profile-user-info-profile-wrapper">
+        <span>Unique Id: {{profile.id}}</span>
+      </div>
+      <div class="main-profile-user-info-profile-wrapper">
+        <span>Published posts: {{profile.numberPost}}</span>
+      </div>
+    </div>
+    <div v-else class="pic-showed-empty">
+
     </div>
   </article>
 </template>
@@ -17,7 +26,7 @@ import axios from 'axios'
 export default {
   name:'ProfileUser',
   props:{
-    publishedPosts:{
+    NumberOfPublishedPosts:{
       type:Number,
       default:0
     },
@@ -25,9 +34,9 @@ export default {
       type:String
     }
   },
-  computed :{
-    updatePost(){
-      this.profile.numberPost = this.publishedPosts;
+  watch :{
+    NumberOfPublishedPosts :function updatePost(){
+      this.profile.numberPost = this.NumberOfPublishedPosts;
     }
   },
   data(){
@@ -36,7 +45,7 @@ export default {
         picPath:"pictureUnknown.svg",
         name:"",
         id:"",
-        numberPost:this.publishedPosts
+        numberPost:0
       },
       state:{
         hidden:true
@@ -91,7 +100,7 @@ export default {
   
   .main-profile-user{
     width:auto;
-    height:400px;
+    height:auto;
     background:rgb(94, 94, 94);
     @include positioning-two-elements-flex-midle(column);
     border-radius:.5rem;
@@ -107,37 +116,44 @@ export default {
       font-family: 'Roboto', sans-serif;
       flex:.7;
       display:grid;
-      grid-template-columns: repeat(1fr,3);
-      span{
+      grid-template-rows: 1fr 1fr 1fr;
+      &-wrapper{
         @include center-div;
-        font-size:1.2rem;
-        margin:0.2rem .1rem;
-        height: 1.4rem;
-        background: #BDBDBD;
         border-radius:.4rem;
-      }
+        margin:0.2rem .1rem;
+        background: #BDBDBD;
+        span{
+          display:flex;
+          align-self: center;
+          height:1.2rem;
+          font-size:1.2rem;
+        }
+      }      
     }
   }
   .pic-showed{
-    width:120px;
-    height:120px;
-    @include center-div;
+    width:auto;
+    height:auto;
+    @include positioning-two-elements-flex-midle(column);
+    border-radius:.5rem;
     .main-profile-user-pic{
       @include center-div;
-      width:100px;
-      height:100px;
-      border-radius:50%;
+      flex:.3;
       img{
         height:auto;
         width:100px;
-        border-radius: 50%;
       }
     }
+    &-empty{
+      flex:.7;
+    }
   }
-  @media(max-width:375px){
+
+@media(max-width:375px){
     .main-profile-user{
       height:200px;
       border-radius:.5rem;
+      min-width: 160px;
       &-pic{
         img{
           height:auto;
@@ -145,30 +161,34 @@ export default {
         }
       }
       &-info-profile{
-        span{
-          font-size:.8rem;
-          margin:0.2rem .1rem;
-          height: 1rem;
-          border-radius:.4rem;
+        &-wrapper{
+          span{
+            font-size:.8rem;
+            margin:0.2rem .1rem;
+            border-radius:.4rem;
+          }
         }
       }
     }
     .pic-showed{
-      width:60px;
-      height:60px;
+      width:160px;
+      height:200px;
       .main-profile-user-pic{
-        width:60px;
-        height:60px;
-        border-radius:50%;
+        width:auto;
+        height:auto;
         img{
           width:60px;
           border-radius: 50%;
         }
       }
+      &-empty{
+        flex:.7;
+      }
     }
   }
   @media (min-width: 375px){
     .main-profile-user{
+      width:160px;
       height:240px;
       border-radius:.5rem;
       &-pic{
@@ -178,31 +198,32 @@ export default {
         }
       }
       &-info-profile{
-        span{
-          font-size:.9rem;
-          margin:0.2rem .1rem;
-          height: 1.2rem;
-          border-radius:.4rem;
-          padding:0 .1rem;
+        &-wrapper{
+          span{
+            font-size:.9rem;
+            margin:0.2rem .1rem;
+            height: 1.2rem;
+            border-radius:.4rem;
+            padding:0 .1rem;
+          }
         }
       }
     }
     .pic-showed{
-      width:70px;
-      height:70px;
+      width:160px;
+      height:240px;
       .main-profile-user-pic{
-        width:70px;
-        height:70px;
-        border-radius:50%;
+        width:auto;
+        height:auto;
         img{
           width:70px;
-          border-radius: 50%;
         }
       }
     }
   }
   @media (min-width:425px){
     .main-profile-user{
+      width:200px;
       height:300px;
       border-radius:.5rem;
       &-pic{
@@ -212,31 +233,32 @@ export default {
         }
       }
       &-info-profile{
-        span{
-          font-size:1.0rem;
-          margin:0.2rem .1rem;
-          height: 1.4rem;
-          border-radius:.4rem;
-          padding:.1 .1rem;
+        &-wrapper{
+          span{
+            font-size:1.0rem;
+            margin:0.2rem .1rem;
+            height: 1.4rem;
+            border-radius:.4rem;
+            padding:.1 .1rem;
+          }
         }
       }
     }
     .pic-showed{
-      width:80px;
-      height:80px;
+      width:200px;
+      height:300px;
       .main-profile-user-pic{
-        width:80px;
-        height:80px;
-        border-radius:50%;
+        width:auto;
+        height:auto;
         img{
-          width:80px;
-          border-radius: 50%;
+          width:70px;
         }
       }
     }
   }
   @media (min-width:768px){
     .main-profile-user{
+      width:300px;
       height:360px;
       border-radius:.5rem;
       &-pic{
@@ -246,25 +268,25 @@ export default {
         }
       }
       &-info-profile{
+        &-wrapper{
         span{
-          font-size:1.2rem;
-          margin:0.2rem .1rem;
-          height: 1.6rem;
-          border-radius:.4rem;
-          padding:.1 .1rem;
+            font-size:1.2rem;
+            margin:0.2rem .1rem;
+            height: 1.6rem;
+            border-radius:.4rem;
+            padding:.1 .1rem;
+          }
         }
       }
     }
     .pic-showed{
-      width:100px;
-      height:100px;
+      width:300px;
+      height:360px;
       .main-profile-user-pic{
-        width:100px;
-        height:100px;
-        border-radius:50%;
+        width:auto;
+        height:auto;
         img{
           width:100px;
-          border-radius: 50%;
         }
       }
     }

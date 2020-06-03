@@ -4,16 +4,24 @@
       <div class="main-logo">
         <LogoComponent/>
       </div>
-      <div v-bind:class="{'main-profile':hidden,'main-profile-active':!hidden}">
-          <ProfileUser v-bind:idProfile="$route.params.idUser" v-bind:publishedPosts="numberPosts"/>
+      <div class="wrapper-main-profile">
+        <div class="main-profile">
+            <ProfileUser v-bind:idProfile="$route.params.idUser" v-bind:NumberOfPublishedPosts="this.numberPosts"/>
+        </div>
       </div>
     </header>
     <main>
       <section class="main-user-posts-area">
-        <!-- <p>User man {{$route.params.idUser}}</p> -->
+        <div class="main-user-posts-area-arr">
+          <div class="main-user-posts-area-arr-element" v-for="post in arrPosts" :key="post.id">
+            <UserPost v-bind:publishedPost="post"/>
+          </div>
+        </div>
       </section>
     </main>
-    <footer><FooterComponent/></footer>
+    <footer>
+      <FooterComponent/>
+    </footer>
   </div>  
 </template>
 
@@ -21,18 +29,27 @@
 import LogoComponent from '../components/LogoComponent.vue'
 import ProfileUser from '../components/ProfileUser.vue'
 import FooterComponent from '../components/FooterComponent'
+import UserPost from '../components/UserPost'
 import axios from 'axios';
 export default {
   name:'User',
-  components: {LogoComponent,ProfileUser,FooterComponent},
+  components: {UserPost,LogoComponent,ProfileUser,FooterComponent},
   data(){
     return{
       widthScreen:window.innerWidth,
-      hidden:true,
-      numberPosts:0
+      numberPosts:0,
+      arrPosts:{}
+    }
+  },
+  filters:{
+    reverseArr : function(arrPosts){
+      return arrPosts.slice().reverse();
     }
   },
   methods:{
+    getNumberPosts(){
+      return this.numberPosts;
+    },
     updateSizeScreen(){
       this.widthScreen = window.innerWidth;
     },
@@ -45,8 +62,8 @@ export default {
         }
       })
       .then(response => {
-        // console.log(response.data)
         this.numberPosts = response.data.length;
+        this.arrPosts = (response.data).reverse();
         })
       .catch(err => console.log(err));
     }
@@ -71,31 +88,47 @@ export default {
   .main-user{
     width:100vw;
     height:100vh;
+    display:grid;
+    grid-template-rows:1fr 2fr 1fr;
+    align-self: center;
     header{
       width:100vw;
       height:auto;
-      @include positioning-two-elements-flex-midle(row);
-      justify-content: space-between;
+      display:grid;
+      grid-template-columns:  1fr 1fr;
       .main-logo{
         .main-logo{
           margin-left:.5rem;
        }
       }
-      .main-profile{
-        margin:0.5rem;
-        height:auto;
+      .wrapper-main-profile{
+        position:absolute;
         width:auto;
-      }
-      .main-profile-active{
-        margin:0.5rem;
         height:auto;
-        width:auto;
+        justify-self: end;
+        margin-top:0.5rem;
+        
+        .main-profile{
+          height:auto;
+          width:auto;
+        }
       }
     }
     main{
       width:100vw;
       height:auto;
-      display:grid;
+      @include center-div;  
+      .main-user-posts-area{
+        width:98vw;
+        height:auto;
+        padding-top:1rem;
+        @include center-div;
+        &-arr{
+         &-element{
+           margin:.6rem;
+         }
+        }
+      }
       
     }
     footer{
@@ -103,5 +136,178 @@ export default {
       height:auto;
     }
 
+  }
+  @media(max-width:375px){
+    .main-user{
+      width:100vw;
+      height:100vh;
+      display:grid;
+      grid-template-rows:1fr 2fr 1fr;
+      align-self: center;
+      header{
+        width:100vw;
+        height:auto;
+        display:grid;
+        grid-template-columns:  1fr 1fr;
+        .main-logo{
+          .main-logo{
+            margin-left:.5rem;
+          }
+        }
+        .wrapper-main-profile{
+          left:48%;
+          position:absolute;
+          width:auto;
+          height:auto;
+          justify-self: end;
+          margin-top:0.5rem;
+          
+          .main-profile{
+            height:auto;
+            width:auto;
+          }
+        }
+      }
+      main{
+        width:100vw;
+        height:auto;
+        
+      }
+      footer{
+        width:100vw;
+        height:auto;
+      }
+
+    }   
+  }
+  @media(min-width:375px){
+    .main-user{
+      width:100vw;
+      height:100vh;
+      display:grid;
+      grid-template-rows:1fr 2fr 1fr;
+      align-self: center;
+      header{
+        width:100vw;
+        height:auto;
+        display:grid;
+        grid-template-columns:  1fr 1fr;
+        .main-logo{
+          .main-logo{
+            margin-left:.5rem;
+        }
+        }
+        .wrapper-main-profile{
+          left:48%;
+          position:absolute;
+          width:auto;
+          height:auto;
+          justify-self: end;
+          margin-top:0.5rem;
+          
+          .main-profile{
+            height:auto;
+            width:auto;
+          }
+        }
+      }
+      main{
+        width:100vw;
+        height:auto;
+        
+      }
+      footer{
+        width:100vw;
+        height:auto;
+      }
+
+    }   
+  }
+  @media(min-width:425px){
+    .main-user{
+      width:100vw;
+      height:100vh;
+      display:grid;
+      grid-template-rows:1fr 2fr 1fr;
+      align-self: center;
+      header{
+        width:100vw;
+        height:auto;
+        display:grid;
+        grid-template-columns:  1fr 1fr;
+        .main-logo{
+          .main-logo{
+            margin-left:.5rem;
+        }
+        }
+        .wrapper-main-profile{
+          left:60%;
+          position:absolute;
+          width:auto;
+          height:auto;
+          justify-self: end;
+          margin-top:0.5rem;
+          
+          .main-profile{
+            height:auto;
+            width:auto;
+          }
+        }
+      }
+      main{
+        width:100vw;
+        height:auto;
+        
+      }
+      footer{
+        width:100vw;
+        height:auto;
+      }
+
+    }   
+  }
+
+  @media(min-width:768px){
+    .main-user{
+      width:100vw;
+      height:100vh;
+      display:grid;
+      grid-template-rows:1fr 2fr 1fr;
+      align-self: center;
+      header{
+        width:100vw;
+        height:auto;
+        display:grid;
+        grid-template-columns:  1fr 1fr;
+        .main-logo{
+          .main-logo{
+            margin-left:.5rem;
+        }
+        }
+        .wrapper-main-profile{
+          left:65%;
+          position:absolute;
+          width:auto;
+          height:auto;
+          justify-self: end;
+          margin-top:0.5rem;
+          
+          .main-profile{
+            height:auto;
+            width:auto;
+          }
+        }
+      }
+      main{
+        width:100vw;
+        height:auto;
+        
+      }
+      footer{
+        width:100vw;
+        height:auto;
+      }
+
+    }   
   }
 </style>
