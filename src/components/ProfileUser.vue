@@ -26,7 +26,7 @@ import axios from 'axios'
 export default {
   name:'ProfileUser',
   props:{
-    NumberOfPublishedPosts:{
+    numberOfPublishedPosts:{
       type:Number,
       default:0
     },
@@ -34,9 +34,9 @@ export default {
       type:String
     }
   },
-  watch :{
+  computed :{
     NumberOfPublishedPosts :function updatePost(){
-      this.profile.numberPost = this.NumberOfPublishedPosts;
+      this.profile.numberPost = this.numberOfPublishedPosts;
     }
   },
   data(){
@@ -45,7 +45,7 @@ export default {
         picPath:"pictureUnknown.svg",
         name:"",
         id:"",
-        numberPost:0
+        numberPost:this.numberOfPublishedPosts
       },
       state:{
         hidden:true

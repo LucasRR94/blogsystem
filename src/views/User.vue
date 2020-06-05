@@ -1,16 +1,19 @@
 <template>
   <div class="main-user">
-    <header>
+    <div v-if="state" class="main-loader">
+      <LoaderAnimation/>
+    </div>
+    <header v-if="notState">
       <div class="main-logo">
         <LogoComponent/>
       </div>
       <div class="wrapper-main-profile">
         <div class="main-profile">
-            <ProfileUser v-bind:idProfile="$route.params.idUser" v-bind:NumberOfPublishedPosts="this.numberPosts"/>
+            <ProfileUser v-bind:idProfile="$route.params.idUser" v-bind:numberOfPublishedPosts="this.propNumberPosts"/>
         </div>
       </div>
     </header>
-    <main>
+    <main v-if="notState" >
       <section class="main-user-posts-area">
         <div class="main-user-posts-area-arr">
           <div class="main-user-posts-area-arr-element" v-for="post in arrPosts" :key="post.id">
@@ -19,7 +22,7 @@
         </div>
       </section>
     </main>
-    <footer>
+    <footer v-if="notState">
       <FooterComponent/>
     </footer>
   </div>  
@@ -31,19 +34,29 @@ import ProfileUser from '../components/ProfileUser.vue'
 import FooterComponent from '../components/FooterComponent'
 import UserPost from '../components/UserPost'
 import axios from 'axios';
+import LoaderAnimation from '../components/LoaderAnimation.vue'
+
 export default {
   name:'User',
-  components: {UserPost,LogoComponent,ProfileUser,FooterComponent},
+  components: {LoaderAnimation,UserPost,LogoComponent,ProfileUser,FooterComponent},
   data(){
     return{
       widthScreen:window.innerWidth,
       numberPosts:0,
-      arrPosts:{}
+      arrPosts:{},
+      state:true,
+      notState:false,
+      propNumberPosts:0
     }
   },
   filters:{
     reverseArr : function(arrPosts){
       return arrPosts.slice().reverse();
+    }
+  },
+  watch:{
+    numberPosts: function (){
+      this.propNumberPosts= this.numberPosts;
     }
   },
   methods:{
@@ -66,11 +79,19 @@ export default {
         this.arrPosts = (response.data).reverse();
         })
       .catch(err => console.log(err));
+    },
+    startLoading(){
+      const timeout = 5000;
+      setTimeout(() => {
+        this.state=!this.state;
+        this.notState = !this.notState;
+      }, timeout);
     }
   },
   mounted(){
     window.addEventListener('resize',this.updateSizeScreen);
     this.consultPosts();
+    this.startLoading();
   },
   destroyed(){
     window.removeEventListener('resize',this.updateSizeScreen);
@@ -85,12 +106,24 @@ export default {
     padding: 0 0;
     box-sizing: border-box;
   }
+  .hidden{
+    visibility:hidden;
+  }
   .main-user{
     width:100vw;
     height:100vh;
     display:grid;
     grid-template-rows:1fr 2fr 1fr;
     align-self: center;
+    .main-loader{
+      display:flex;
+      flex-direction:row;
+      justify-content: center;
+      align-items:center;
+      width:100vw;
+      height:100vh;
+       background: #f4f4f4;
+    }
     header{
       width:100vw;
       height:auto;
