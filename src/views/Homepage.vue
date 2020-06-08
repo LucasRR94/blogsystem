@@ -146,13 +146,13 @@ export default {
     align-content: space-around;
     justify-content: center;
     width:100vw;
-    height:100vh;
+    height:auto;
     header{
       position:relative;
       font-family:$font-stack1;
       @include pic-config($url-pic);
       @include positioning-two-elements-flex-midle(row);
-      height:30%;
+      height:auto;
       .logo{
         flex:1;
         display:flex;
@@ -226,7 +226,7 @@ export default {
       position:static;
       font-family:$font-stack2;
       width:100%;
-      height:60%;
+      height:auto;
       .wrapper-rewiews-section{
         .main-reviews{
           // min-height:180px;
@@ -311,7 +311,7 @@ export default {
       grid-row-start:2;
       grid-row-end:3;
       width:100vw;
-      height: 16%;
+      height: auto;
       background: rgb(153, 153, 153);
       display: flex;
       flex-direction: row;
@@ -320,7 +320,7 @@ export default {
       .wrapper-content-footer{
         align-self: center;
         width:90vw;
-        height:8vh;
+        height:auto;
         display:flex;
         flex-direction: row;
         justify-content: space-between;
@@ -368,9 +368,8 @@ export default {
   
   @media(max-width:425px){
     .main-homepage{
-      min-height: 560px;
       header{
-        height:15vh;
+        @include defined_height(140px,140px);
         .logo{
             margin-left:0.2rem;
             margin-right:0.2rem;
@@ -393,14 +392,17 @@ export default {
           }
         }
       }
-      @include design_cards_rows(0.8fr,0.6fr);      
+      @include design_cards_rows(0.8fr,0.6fr);
+      footer{
+       min-height:100px;
+       max-height: 200px; 
+      }      
     }
   }
   @media(min-width:425px){
     .main-homepage{
-      min-height: 560px;
       header{
-        height:20vh;
+        @include defined_height(140px,140px);
         .logo{
             margin:0.2rem 0.2rem;
             img{
@@ -421,14 +423,13 @@ export default {
           }
         }
       }
-      @include design_cards_rows(1fr,1fr);
+      @include design_cards_rows(.3fr,1fr);
     }
   }
   @media(min-width:768px){
     .main-homepage{
-      min-height: 760px;
       header{
-        height:40vh;
+        @include defined_height(240px,260px);
         .logo{
             margin:0.5rem 0.5rem;
             img{
@@ -449,13 +450,17 @@ export default {
           }
         }
       }
-      @include control_cards_desktop_tablet(350px,.5fr,.5fr,1rem);
+      @include control_cards_desktop_tablet(380px,.5fr,.5fr,1rem);
+      footer{
+        @include defined_height(100px,150px);
+      }
     }
   }
   @media(min-width:1024px){
     .main-homepage{
       min-height:760px;
       header{
+        @include defined_height(280px,320px);
         .logo{
           margin:1rem;
         }
@@ -482,7 +487,7 @@ export default {
       }
       @include control_cards_desktop_tablet(500px,.2fr,.8fr,1.6rem);
       footer{
-        height:25%;
+        @include defined_height(100px,150px);
       }
     }
   }
@@ -490,7 +495,7 @@ export default {
     .main-homepage{
         min-height:760px;
         header{
-          height:45vh;
+          @include defined_height(280px,320px);
           .logo{
             margin:2rem;
           }
@@ -515,7 +520,10 @@ export default {
             }
           }
         }
-        @include control_cards_desktop_tablet(500px,.2fr,.8fr,1.6rem);      
+        @include control_cards_desktop_tablet(560px,.2fr,.8fr,1.6rem);
+        footer{
+          @include defined_height(120px,170px);
+        }      
       }
   }
 </style>

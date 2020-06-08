@@ -40,3 +40,8 @@
   animation: $effect 4s ease-in;
   }
 }
+@mixin defined_height($maxSize, $minSize){
+  height:auto;
+  max-height: $maxSize;
+  min-height: $minSize;
+}
