@@ -138,4 +138,9 @@ export default {
       }
     }
   }
+  @media(min-width:425px){
+    .main-reviews-container-slide-reviews{
+      min-height:160px
+    }
+  }
 </style>

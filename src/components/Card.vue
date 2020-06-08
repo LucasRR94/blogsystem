@@ -39,6 +39,7 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '../style/_modulos.scss';
   .template-card{
     .main-card{
       border-radius:0.6rem;
@@ -49,7 +50,7 @@ export default {
       flex-direction: row;
       .main-review-text-box{
         flex:0.65;
-        height:100%;
+        height:auto;
         display:grid;
         grid-template-columns: 1fr;
         justify-content: center;
@@ -97,11 +98,12 @@ export default {
     .template-card{
       margin:.2rem .2rem;
       width:auto;
-      height:20%;
+      height:auto;
+      min-height:80px;
       max-width:285px;//20px each side  
       .main-card{
-        height:18vh;
-        max-height: 110px;
+        min-height: 80px;
+        max-height: 80px;
         .main-review-text-box{
           margin:0rem 0.2rem;
           &-paragraph{
@@ -137,10 +139,10 @@ export default {
     .template-card{
       margin:.2rem .2rem;
       width:auto;
-      height: 100px;
+      height: 80px;
       max-width:300px;
       .main-card{
-        max-height: 110px;
+        max-height: 80px;
         .main-review-text-box{
           margin:0rem 0.2rem;
           &-paragraph{
@@ -174,16 +176,14 @@ export default {
       }
     }
   }
-  @media(min-width:768px){
+  @media(max-width:768px){
      .template-card{
       margin:1rem .2rem;
       width:auto;
       max-width:400px;
-      max-height: 200px;
-      height:28vh;
+      @include defined_height(160px,160px);
       .main-card{
-        height:28vh;
-        max-height: 160px;
+        @include defined_height(160px,160px);
         .main-review-text-box{
           margin:0rem 0.2rem;
           &-paragraph{
@@ -222,11 +222,9 @@ export default {
       margin:1rem .2rem;
       width:auto;
       max-width:400px;
-      max-height: 200px;
-      height:28vh;
+      @include defined_height(200px,200px);
       .main-card{
-        height:28vh;
-        max-height: 160px;
+        @include defined_height(180px,180px);
         .main-review-text-box{
           margin:0rem 0.2rem;
           &-paragraph{
