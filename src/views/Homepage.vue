@@ -368,6 +368,7 @@ export default {
   
   @media(max-width:425px){
     .main-homepage{
+      min-height: 560px;
       header{
         height:15vh;
         .logo{
@@ -397,6 +398,7 @@ export default {
   }
   @media(min-width:425px){
     .main-homepage{
+      min-height: 560px;
       header{
         height:20vh;
         .logo{
@@ -424,6 +426,7 @@ export default {
   }
   @media(min-width:768px){
     .main-homepage{
+      min-height: 760px;
       header{
         height:40vh;
         .logo{
@@ -451,6 +454,7 @@ export default {
   }
   @media(min-width:1024px){
     .main-homepage{
+      min-height:760px;
       header{
         .logo{
           margin:1rem;
@@ -477,10 +481,14 @@ export default {
         }
       }
       @include control_cards_desktop_tablet(500px,.2fr,.8fr,1.6rem);
+      footer{
+        height:25%;
+      }
     }
   }
   @media(min-width:1440px){
     .main-homepage{
+        min-height:760px;
         header{
           height:45vh;
           .logo{

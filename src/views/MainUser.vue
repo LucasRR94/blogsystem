@@ -5,7 +5,7 @@
         <LogoComponent/>
       </div>
     </header>
-    <main> 
+    <main class="main-area"> 
       <div class="area-search">
         <SearchUserArea v-on:searchUser="updateQuery"/>
       </div>
@@ -63,7 +63,7 @@ export default {
         margin:0.5rem;
       }
     }
-    main{
+    .main-area{
       width:100vw;
       height:auto;
       @include positioning-two-elements-flex-midle(column);

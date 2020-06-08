@@ -32,7 +32,6 @@
   flex-direction:$rowOrColumn;
 }
 
-
 @mixin effect-portable-all-browsers($effectType,$nameElement,$effect){
   #{$nameElement}:#{$effectType} {
   -moz-animation: $effect 4s ease-in;

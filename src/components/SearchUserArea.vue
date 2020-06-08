@@ -38,7 +38,7 @@ export default {
         padding-right:.5rem;
         @include center-div;
         &-input-search{
-          justify-self: center;
+          @include positioning-element-flex(center,center);
           height:20vh;
           width:100vw;
           border-radius: .4rem;
