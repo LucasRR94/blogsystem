@@ -1,7 +1,7 @@
 @mixin control_cards_desktop_tablet($max_height,$proportion_grid_1,$proportion_grid_2,$font_size_titles){
   main{
     width:100vw;
-    height:80vh;
+    @include defined_height(300px,#{$max_height + 40px});
     display:flex;
     flex:1;
     flex-direction: row;
@@ -10,20 +10,18 @@
     .wrapper-rewiews-section{
       justify-self:center;
       width:98vw;
-      max-width: 1500px;
-      height:70vh;
+      max-width: 1200px;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      max-height:$max_height;
+      @include defined_height(300px,#{$max_height - 30px});
       .main-reviews{
         margin-top:2rem;
-        width:45vw;
+        width:40vw;
         max-width: 500px;
-        height:60vh;
         margin-right:0.5rem;
-        max-height:$max_height;
+        @include defined_height(240px,#{$max_height - 30px});
         &-container{
-          height:60vh;
+          @include defined_height(240px,#{$max_height - 30px});
           border-radius:.6rem;
           display:grid;
           grid-template-rows: $proportion_grid_1 $proportion_grid_2;
@@ -43,14 +41,16 @@
         }
       }
       .section-sign-in{
+        @include positioning-element-flex(start,center);
         height:60vh;
         max-width: 500px;
-        max-height:$max_height;
-        width:45vw;
-        margin-left:.5rem;
+        width:40vw;
+        margin-left:1rem;
         margin-top:1.8rem;
+        @include defined_height(240px,#{$max_height - 30px});
         &-form{
             max-width: 360px;
+            @include defined_height(240px,#{$max_height - 30px});
             &-title-phrase-Intro{
               margin-top:0.8rem;
               &-title{

@@ -32,7 +32,6 @@
   flex-direction:$rowOrColumn;
 }
 
-
 @mixin effect-portable-all-browsers($effectType,$nameElement,$effect){
   #{$nameElement}:#{$effectType} {
   -moz-animation: $effect 4s ease-in;
@@ -40,4 +39,9 @@
   -o-animation: $effect 4s ease-in;
   animation: $effect 4s ease-in;
   }
+}
+@mixin defined_height($maxSize, $minSize){
+  height:auto;
+  max-height: $maxSize;
+  min-height: $minSize;
 }
