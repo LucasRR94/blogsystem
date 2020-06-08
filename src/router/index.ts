@@ -41,11 +41,6 @@ Vue.use(VueRouter)
     component:NotFound
   },
   {
-    path:'/test',
-    name:'test',
-    component: test
-  },
-  {
     path: '/contact',
     name: 'Contact',
     //component:Contact
