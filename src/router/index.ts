@@ -6,8 +6,7 @@ import MainUser from '../views/MainUser.vue'
 import User from '../views/User.vue'
 import ListUsers from '../views/ListUsers.vue'
 import NotFound from '../views/NotFound.vue'
-import Contact from '../views/Contact.vue'
-import test from '../views/test.vue'
+
 
 Vue.use(VueRouter)
 
