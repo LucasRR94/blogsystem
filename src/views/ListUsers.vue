@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="list-users">
     <header>
       <div class="area-logo">
         <LogoComponent/>
@@ -53,22 +53,30 @@ export default {
     margin: 0 0;
     box-sizing:border-box;
   }
-  .main{
-    display:grid;
-    grid-template-rows:2fr .5fr .5fr;
-    //grid-template-rows:auto;
-    justify-content: center;
-    align-content: space-between;
+  body{
     width:100vw;
     height:100vh;
+    display:flex;
+    flex-direction: column;
+  }
+  .list-users{
+    flex:1;
+    display:grid;
+    grid-template-rows:auto;
+    justify-content: center;
+    width:100vw;
+    height:auto;
     header {
+      align-self:start;
       width:100vw;
       height:auto;
+      min-height:100px;
       .area-logo{
         margin:0.5rem;
       }
     }
     main{
+      align-self:center;
       width:100vw;
       height:auto;
       display:grid;
@@ -78,10 +86,12 @@ export default {
       .list-btn{
         width:100vw;
         height:auto;
+        min-height:100px
       } 
       .list-search{
         width:100vw;
         height:auto;
+        min-height:350px;
       }
     }
     footer{
@@ -89,6 +99,8 @@ export default {
       align-self:end;
       width:100vw;
       height:auto;
+      min-height: 50px;
+      
     }
   }
 </style>
