@@ -58,7 +58,7 @@
     </main>
     <footer>
       <div class="wrapper-content-footer">
-        <router-link  to="/contact"><div class="page-contact"><p>Contact</p></div></router-link>
+        <router-link  to="/listusers"><div><p>List Users</p></div></router-link>
         <section> 
           <div class="Title-icons">
             <h3>Social networks:</h3>
