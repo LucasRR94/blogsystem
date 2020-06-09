@@ -67,6 +67,7 @@ export default {
       this.widthScreen = window.innerWidth;
     },
     consultPosts(){
+      axios.defaults.timeout = 10000;
       axios({
         method:'get',
         url:`https://jsonplaceholder.typicode.com/users/${this.$route.params.idUser}/posts`,
@@ -79,12 +80,12 @@ export default {
         this.arrPosts = (response.data).reverse();
         })
       .catch(err => {
-        windows.alert("An error it happened please try later, no answer from API.")
+        window.alert("An error it happened please try later, no answer from API.")
         console.log(err)
       });
     },
     startLoading(){
-      const timeout = 5000;
+      const timeout = 20000;
       setTimeout(() => {
         this.state=!this.state;
         this.notState = !this.notState;
