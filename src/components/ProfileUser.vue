@@ -82,7 +82,7 @@ export default {
        
       })
       .then(response => this.loadProfileInfos(response.data))
-      .catch(err => console.log(err));
+      .catch(err => console.log(`An error occur in profile user ${err}`));
     },
     changeState(){
       this.state.hidden=!this.state.hidden;
