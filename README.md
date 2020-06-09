@@ -1,11 +1,18 @@
-#blogsystem
-A blog system developed in vuejs front-end framework.
+# Blogsystem 
 
-##Tools
-It's used axios to make request to API adress:
-  https://jsonplaceholder.typicode.com/
+Blogsystem it's a vuejs app, an blog application, it's cappable of generate users pages, load their posts, list all users. Blogsystem has a responsive design that change according to the width of screen used in the acess. It's uses a fake api provide by : **jsonplaceholder.typicode**,  using api requests to receive information, and dynamic generate pages.
 
-That it's a resource that provide fake data for testing and prototyping.
-Very usefull to proved the capacity of web application can handle requesting 
-and currect display in different tecnologies.
+## Tecnologies used:
 
+* vuejs framework
+* vue router
+* axios
+
+## Third party resources:
+
+* [Unsplash image of typewriter](http://unsplash.com/)
+* [API used for users, posts](https://jsonplaceholder.typicode.com/)
+
+## The app it's deploy in github pages:
+
+* [adress of app](https://lucasrr94.github.io/blogsystem/)
