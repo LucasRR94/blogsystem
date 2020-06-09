@@ -72,6 +72,7 @@ export default {
         method:'get',
         url:`https://jsonplaceholder.typicode.com/users/${this.$route.params.idUser}/posts`,
         headers:{
+          "Access-Control-Allow-Origin": "*",
           "Content-type": "application/json; charset=UTF-8"
         }
       })

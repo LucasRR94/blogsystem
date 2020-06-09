@@ -39,6 +39,7 @@ export default {
       axios({method: 'get',
         url: 'https://jsonplaceholder.typicode.com/users',
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-type": "application/json; charset=UTF-8"
         }
       })
