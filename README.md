@@ -7,6 +7,7 @@ Blogsystem it's a vuejs app, an blog application, it's cappable of generate user
 * vuejs framework
 * vue router
 * axios
+* sass
 
 ## Third party resources:
 
