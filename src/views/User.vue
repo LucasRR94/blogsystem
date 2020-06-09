@@ -9,7 +9,7 @@
       </div>
       <div class="wrapper-main-profile">
         <div class="main-profile">
-            <ProfileUser v-bind:idProfile="$route.params.idUser" v-bind:numberOfPublishedPosts="this.propNumberPosts"/>
+            <ProfileUser v-bind:idProfile="$route.params.idUser.toString()" v-bind:numberOfPublishedPosts="this.propNumberPosts"/>
         </div>
       </div>
     </header>
@@ -78,7 +78,10 @@ export default {
         this.numberPosts = response.data.length;
         this.arrPosts = (response.data).reverse();
         })
-      .catch(err => console.log(err));
+      .catch(err => {
+        windows.alert("An error it happened please try later, no answer from API.")
+        console.log(err)
+      });
     },
     startLoading(){
       const timeout = 5000;
