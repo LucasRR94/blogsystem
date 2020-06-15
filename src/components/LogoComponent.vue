@@ -108,7 +108,7 @@ export default {
         }
         .title{
           margin:0rem .6rem;
-          font-size:1.0rem;
+          font-size:.9rem;
         }
       }
     }
