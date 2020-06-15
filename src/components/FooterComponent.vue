@@ -34,7 +34,7 @@ export default {
       grid-row-end:3;
       width:100vw;
       height:16vh;
-      background: rgb(153, 153, 153);
+      background:$grey-background;
       display: flex;
       flex-direction: row;
       justify-content: center;
