@@ -9,6 +9,25 @@ Blogsystem it's a vuejs app, an blog application, it's cappable of generate user
 * axios
 * sass
 
+## Requeriments:
+* yarn
+* npm
+
+## Optional, but very interesting tools to install:
+* docker
+* docker-compose
+
+## Install:
+* yarn install or npm install in main folder of app.
+
+## usage:
+* To use at live server: 
+  * *docker-compose up* (if available docker compose) 
+  * *yarn serve* or *npm run serve*.
+* To build the actual app:
+  * *yarn run build* or *npm run-script build*.
+
+
 ## Third party resources:
 
 * [Unsplash image of typewriter](http://unsplash.com/)
